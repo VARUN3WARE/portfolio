@@ -1,6 +1,8 @@
+[build.environment]
+  RUST_VERSION = "1.56.0"  # Ensure you're using a compatible version of Rust
+
 [build]
-  RUST_VERSION = "1.56.0" 
-  command = "pip install -r requirements.txt && python new.py"
+  command = "bash install_rust.sh && pip install -r requirements.txt && python manage.py collectstatic"
   publish = "/"
   functions = "netlify/functions"
 
