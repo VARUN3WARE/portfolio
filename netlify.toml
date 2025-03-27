@@ -1,0 +1,7 @@
+[build]
+  command = "pip install -r requirements.txt && python new.py"
+  publish = "/"
+  functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-python"
