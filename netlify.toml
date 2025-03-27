@@ -1,4 +1,5 @@
 [build]
+  RUST_VERSION = "1.56.0" 
   command = "pip install -r requirements.txt && python new.py"
   publish = "/"
   functions = "netlify/functions"
