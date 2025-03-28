@@ -1,15 +1,16 @@
-from flask import Flask, jsonify, request
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from langchain_groq import ChatGroq
 
-# Initialize Flask
 app = Flask(__name__)
+CORS(app)
 
 def initialize_llm():
     llm = ChatGroq(
@@ -19,10 +20,37 @@ def initialize_llm():
     )
     return llm
 
-# Main endpoint for asking questions
+def create_vector_db():
+    loader = DirectoryLoader("data", glob='*.pdf', loader_cls=PyPDFLoader)
+    documents = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    texts = text_splitter.split_documents(documents)
+    embeddings = HuggingFaceBgeEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+    vector_db = Chroma.from_documents(texts, embeddings, persist_directory='./chroma_db')
+    vector_db.persist()
+    return vector_db
+
+def setup_qa_chain(vector_db, llm):
+    retriever = vector_db.as_retriever()
+    prompt_template = """ 
+    You are a helpful assistant. Answer the following query by providing the most relevant information.
+    If the answer is not found in the provided context, say "Sorry, I don't have enough information."
+    {context}
+    User: {question}
+    Chatbot: """
+    
+    PROMPT = PromptTemplate(template=prompt_template, input_variables=['context', 'question'])
+    qa_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type="stuff",
+        retriever=retriever,
+        chain_type_kwargs={"prompt": PROMPT}
+    )
+    return qa_chain
+
 @app.route('/ask', methods=['POST'])
 def ask():
-    user_query = request.json.get('query')  # Get the query from the request
+    user_query = request.json.get('query')
     if not user_query:
         return jsonify({'error': 'No query provided'}), 400
 
@@ -37,9 +65,10 @@ def ask():
     
     qa_chain = setup_qa_chain(vector_db, llm)
     
-    response = qa_chain.run(user_query)  # Get the response from the chatbot
+    response = qa_chain.run(user_query)
     return jsonify({'response': response})
 
-# This makes the app compatible with Netlify Functions
-def handler(event, context):
-    return app(event, context)
+# This is where we hook into the serverless function
+def handler(request, context):
+    from serverless_wsgi import handle_request
+    return handle_request(app, request, context)
