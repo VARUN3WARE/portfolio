@@ -1,7 +1,8 @@
 [build]
-  command = "pip install -r requirements.txt && python manage.py collectstatic"
-  publish = "/"
-  functions = "netlify/functions"
+  functions = "functions"  # This specifies where the serverless functions are located
+  publish = "static"  # If you have any static files, specify here
 
-[[plugins]]
-  package = "@netlify/plugin-python"
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
