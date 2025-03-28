@@ -1,6 +1,12 @@
 [build]
-  functions = "functions"  # This specifies where the serverless functions are located
-  publish = "static"  # If you have any static files, specify here
+  command = "pip install -r requirements.txt && python manage.py collectstatic"
+  publish = "staticfiles"
+  functions = "functions"
+
+[dev]
+  functions = "functions"
+  targetPort = 5000
+  command = "python app.py"
 
 [[redirects]]
   from = "/"
