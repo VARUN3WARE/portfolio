@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # To handle CORS
+from flask_cors import CORS
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.vectorstores import Chroma
@@ -26,11 +26,17 @@ def initialize_llm():
 
 # Function to create the vector database
 def create_vector_db():
-    loader = DirectoryLoader("data", glob='*.pdf', loader_cls=PyPDFLoader)
+    loader = DirectoryLoader("data/", glob='*.pdf', loader_cls=PyPDFLoader)
     documents = loader.load()
+    
+    # Use HuggingFaceBgeEmbeddings for document embeddings
+    embeddings = HuggingFaceBgeEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+    
+    # Use RecursiveCharacterTextSplitter to split documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     texts = text_splitter.split_documents(documents)
-    embeddings = HuggingFaceBgeEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+    
+    # Create the vector database
     vector_db = Chroma.from_documents(texts, embeddings, persist_directory='./chroma_db')
     vector_db.persist()
     return vector_db
@@ -72,8 +78,11 @@ def ask():
     
     qa_chain = setup_qa_chain(vector_db, llm)
     
-    response = qa_chain.run(user_query)  # Get the response from the chatbot
-    return jsonify({'response': response})
+    try:
+        response = qa_chain.run(user_query)  # Get the response from the chatbot
+        return jsonify({'response': response})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

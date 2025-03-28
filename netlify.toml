@@ -1,7 +1,0 @@
-[build]
-  command = "pip install -r requirements.txt && python manage.py collectstatic"
-  publish = "/"
-  functions = "netlify/functions"
-
-[[plugins]]
-  package = "@netlify/plugin-python"
