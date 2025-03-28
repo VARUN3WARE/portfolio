@@ -1,8 +1,11 @@
 Flask==2.1.1
+flask-cors==3.1.1
 langchain==0.0.12
 langchain-groq==0.0.1
 transformers==4.28.1
 sentence-transformers==2.2.0
 chromadb==0.5.17
-tokenizers==0.13.2
+huggingface-hub==0.14.1
+PyPDF2==1.26.0
+
 
