@@ -24,7 +24,7 @@ CORS(app)
 def initialize_llm():
     llm = ChatGroq(
         temperature=0,
-        groq_api_key="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",
+        groq_api_key="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",  # Replace with your actual Groq API key
         model_name="llama-3.3-70b-versatile"
     )
     return llm
@@ -89,7 +89,7 @@ def ask():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# This is the entry point for the serverless function. Vercel will use this to call the app.
+# Vercel expects a handler function for serverless deployment
 def handler(request):
     with app.app_context():
         return app(request)
