@@ -31,7 +31,7 @@ def initialize_llm():
 
 # Function to create the vector database
 def create_vector_db():
-    loader = DirectoryLoader("data/", glob='*.pdf', loader_cls=PyPDFLoader)
+    loader = DirectoryLoader("api/data/", glob='*.pdf', loader_cls=PyPDFLoader)
     documents = loader.load()
     
     # Use HuggingFaceBgeEmbeddings for document embeddings
