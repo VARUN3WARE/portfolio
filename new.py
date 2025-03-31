@@ -1,3 +1,7 @@
+# Override sqlite3 with pysqlite3
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain.embeddings import HuggingFaceBgeEmbeddings
@@ -19,7 +23,7 @@ CORS(app)
 def initialize_llm():
     llm = ChatGroq(
         temperature=0,
-        groq_api_key="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",
+        groq_api_key="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",
         model_name="llama-3.3-70b-versatile"
     )
     return llm
