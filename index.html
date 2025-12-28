@@ -108,6 +108,189 @@
         </div>
       </section>
 
+      <!-- Open Source Library Section -->
+      <section id="open-source">
+        <div class="section-header">
+          <div class="terminal-line">
+            &gt; pip install pytorch-dml && import pydml
+          </div>
+          <h2 class="section-title">Published Open Source</h2>
+        </div>
+
+        <div class="card featured-project" style="max-width: 100%">
+          <div class="featured-badge">🎉 PUBLISHED ON PyPI</div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 2fr;
+              gap: 2rem;
+              align-items: start;
+            "
+          >
+            <div>
+              <h3 style="font-size: 2rem; margin-bottom: 1rem">pytorch-dml</h3>
+              <p
+                style="
+                  color: var(--neon-purple);
+                  font-size: 1.2rem;
+                  margin-bottom: 1.5rem;
+                "
+              >
+                Deep Mutual Learning Library
+              </p>
+
+              <div style="margin-bottom: 1.5rem">
+                <div class="stat-item">
+                  <span class="stat-value">7,000+</span>
+                  <span class="stat-label">Lines of Code</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">13/13</span>
+                  <span class="stat-label">Tests Passing</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">2-5%</span>
+                  <span class="stat-label">Accuracy Boost</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">34</span>
+                  <span class="stat-label">Python Modules</span>
+                </div>
+              </div>
+
+              <div class="badges-container">
+                <img
+                  src="https://badge.fury.io/py/pytorch-dml.svg"
+                  alt="PyPI version"
+                />
+                <img
+                  src="https://img.shields.io/badge/tests-passing-brightgreen"
+                  alt="Tests"
+                />
+                <img
+                  src="https://img.shields.io/badge/License-MIT-yellow.svg"
+                  alt="License"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h4 style="color: var(--neon-green); margin-bottom: 1rem">
+                Overview
+              </h4>
+              <p style="margin-bottom: 1rem">
+                Production-ready PyTorch library for
+                <strong>Deep Mutual Learning (DML)</strong> and collaborative
+                neural network training. Implements state-of-the-art techniques
+                where multiple neural networks train together and learn from
+                each other's predictions, achieving
+                <strong>2-5% higher accuracy</strong> compared to independent
+                training.
+              </p>
+
+              <h4
+                style="
+                  color: var(--neon-green);
+                  margin-bottom: 1rem;
+                  margin-top: 1.5rem;
+                "
+              >
+                <!-- Key Features -->
+              </h4>
+              <!-- <ul style="list-style: none; padding-left: 0;">
+                <li>✨ <strong>Collaborative Learning:</strong> Knowledge distillation, co-distillation, feature-based learning</li>
+                <li>⚡ <strong>Performance:</strong> Mixed precision (AMP) for 1.5-2x speedup, distributed multi-GPU (DDP)</li>
+                <li>🔧 <strong>Production Tools:</strong> ONNX/TorchScript export, loss visualization, hyperparameter search</li>
+                <li>📊 <strong>Analysis Suite:</strong> Robustness testing, metrics, attention transfer mechanisms</li>
+                <li>🏗️ <strong>Architecture Support:</strong> ResNet, WideResNet, MobileNet for CIFAR datasets</li>
+                <li>✅ <strong>Well-Tested:</strong> Comprehensive test suite (13/13 passing), CI/CD pipeline</li>
+              </ul> -->
+
+              <h4
+                style="
+                  color: var(--neon-green);
+                  margin-bottom: 1rem;
+                  margin-top: 1.5rem;
+                "
+              >
+                Quick Start
+              </h4>
+              <div class="code-block">
+                <code>
+                  pip install pytorch-dml
+                  <br /><br />
+                  from pydml import DMLTrainer<br />
+                  from torchvision import models<br /><br />
+                  models = [models.resnet18(), models.resnet18()]<br />
+                  trainer = DMLTrainer(models, device='cuda')<br />
+                  trainer.fit(train_loader, val_loader, epochs=100)
+                </code>
+              </div>
+
+              <h4
+                style="
+                  color: var(--neon-green);
+                  margin-bottom: 1rem;
+                  margin-top: 1.5rem;
+                "
+              >
+                Package Contents
+              </h4>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(2, 1fr);
+                  gap: 1rem;
+                  margin-bottom: 1.5rem;
+                "
+              >
+                <div>📦 34 Python modules</div>
+                <div>📚 18 working examples</div>
+                <div>📓 3 Jupyter notebooks</div>
+                <div>📖 Complete documentation</div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 2rem;
+                  display: flex;
+                  gap: 1rem;
+                  flex-wrap: wrap;
+                "
+              >
+                <a
+                  href="https://github.com/VARUN3WARE/dml-py"
+                  class="project-link"
+                  target="_blank"
+                >
+                  📂 GitHub Repository
+                </a>
+                <a
+                  href="https://pypi.org/project/pytorch-dml/"
+                  class="project-link"
+                  target="_blank"
+                  style="
+                    background: var(--neon-green);
+                    border-color: var(--neon-green);
+                    color: var(--dark-bg);
+                  "
+                >
+                  📦 PyPI Package
+                </a>
+                <a
+                  href="https://github.com/VARUN3WARE/dml-py#-documentation"
+                  class="project-link"
+                  target="_blank"
+                >
+                  📖 Documentation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Projects Section -->
       <section id="projects">
         <div class="section-header">
