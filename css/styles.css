@@ -449,6 +449,55 @@ section {
   background: var(--bg-primary);
 }
 
+.skills-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+/* .skills-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-hover);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  filter: brightness(1.05) saturate(0.85);
+}
+
+.skills-image:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+} */
+.skills-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow-hover);
+  transition: all 0.3s ease;
+  
+  /* --- KEY CHANGES HERE --- */
+  
+  /* 1. Reset opacity to make text fully sharp and readable. */
+  opacity: 1;
+
+  /* 2. Remove the filter that was washing out the image.
+     The old filter: brightness(1.05) saturate(0.85); was 
+     over-brightening and graying the colors. */
+  filter: none;
+
+  /* 3. (Optional but recommended) If the original is still a bit dull, 
+     slightly *increase* saturation and contrast to make colors rich. 
+     You can also add a subtle drop shadow to text for a 3D effect. */
+  /* filter: saturate(1.1) contrast(1.05); */
+}
+
+/* Re-apply the saturation/contrast to hover, but not scale */
+.skills-image:hover {
+  transform: translateY(-2px); /* A cleaner, professional hover */
+  /* You can add back a subtle shadow change or just keep this scale-down */
+}
 .skills-cloud {
   display: flex;
   flex-wrap: wrap;
