@@ -443,6 +443,20 @@ a {
   transition: all 0.3s ease;
 }
 
+/* Hidden Repos */
+.repo-extra {
+  transition: all 0.3s ease;
+}
+
+/* Load More Button */
+#load-more-btn:hover {
+  color: var(--text-primary) !important;
+}
+
+#load-more-btn:hover i {
+  transform: translateY(2px);
+}
+
 .experience-card:hover {
   border-color: #cbd5e1;
   box-shadow: var(--shadow-sm);

@@ -1,57 +1,73 @@
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const sunIcon = themeToggle.querySelector('.sun');
-const moonIcon = themeToggle.querySelector('.moon');
+/**
+ * Adithya-style Portfolio Logic
+ * "I put the 'AI' in 'Aint nobody got time for that'" :)
+ */
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', currentTheme);
-updateThemeButtons(currentTheme);
-
-function updateThemeButtons(theme) {
-  if (theme === 'dark') {
-    moonIcon.classList.add('active');
-    sunIcon.classList.remove('active');
-  } else {
-    sunIcon.classList.add('active');
-    moonIcon.classList.remove('active');
-  }
-}
-
-themeToggle.addEventListener('click', (e) => {
-  let currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeButtons(newTheme);
-});
-
-// Navigation Active Link
-const navLinks = document.querySelectorAll('.nav-link');
-
-function setActiveLink() {
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    
-    const href = link.getAttribute('href').slice(1);
-    const section = document.getElementById(href);
-    
-    if (section) {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 200 && rect.bottom > 200) {
-        link.classList.add('active');
-      }
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lucide Icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
     }
-  });
-}
 
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    navLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  });
+    // --- Floating Navigation Logic ---
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveNav() {
+        let scrollY = window.pageYOffset;
+
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 150;
+            const sectionId = current.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${sectionId}`) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+        });
+    });
+
+    // --- Show More Repositories Logic ---
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const extraRepos = document.querySelectorAll('.repo-extra');
+    const loadMoreText = document.getElementById('load-more-text');
+    const loadMoreIcon = document.getElementById('load-more-icon');
+
+    if (loadMoreBtn) {
+        let isExpanded = false;
+
+        loadMoreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+
+            extraRepos.forEach(repo => {
+                repo.style.display = isExpanded ? 'flex' : 'none';
+            });
+
+            // Update button text and icon
+            if (isExpanded) {
+                loadMoreText.textContent = 'Show fewer repositories';
+                loadMoreIcon.setAttribute('data-lucide', 'chevron-up');
+            } else {
+                loadMoreText.textContent = 'Show more repositories';
+                loadMoreIcon.setAttribute('data-lucide', 'chevron-down');
+            }
+
+            // Refresh icons for the toggle
+            lucide.createIcons();
+        });
+    }
 });
-
-window.addEventListener('scroll', setActiveLink);
-setActiveLink();

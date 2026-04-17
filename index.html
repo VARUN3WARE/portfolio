@@ -16,10 +16,18 @@
         <section id="home" class="hero-section">
             <div class="hero-layout">
                 <div class="hero-text">
-                    <h1 class="name">Varun Rao</h1>
-                    <p class="role">AI/ML Engineer, Building Intelligent Systems at Scale</p>
+                    <h1 class="name">AI ate my Creatine</h1>
+                    <p class="role">Funny ML Guy, Co-founding of Human Slop</p>
+                    <p class="hero-description" style="margin-top: 1.5rem; color: var(--text-secondary); line-height: 1.7;">
+                        Started as a Data Scientist wrangling messy datasets and building
+                        predictive models, But soon I realized that my true passion lies
+                        beyond just data and more towards AI systems and Deep Learning. And
+                        worked on a wide range of projects for hackathons, competitions,
+                        personal research, and Internship. Got fed up Building in AI all the
+                        time hence Co-founded Human Slop (Anti-AI Social Platform)
+                    </p>
                     
-                    <div class="hero-socials">
+                    <div class="hero-socials" style="margin-top: 2rem;">
                         <a href="mailto:varunr@iitbhilai.ac.in" class="hero-social-link"><i data-lucide="mail"></i></a>
                         <a href="https://github.com/VARUN3WARE" target="_blank" class="hero-social-link"><i data-lucide="github"></i></a>
                         <a href="https://linkedin.com/in/varun3ware/" target="_blank" class="hero-social-link"><i data-lucide="linkedin"></i></a>
@@ -49,7 +57,12 @@
 
         <!-- Work Experience Section -->
         <section id="work" class="experience-section">
-            <h2>Work Experience</h2>
+            <div style="margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 0.25rem;">The Journey So Far</h2>
+                <p class="muted" style="font-size: 0.875rem;">Random</p>
+            </div>
+            
+            <h3 style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-primary);">Work Experience</h3>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
@@ -63,12 +76,12 @@
                                 </div>
                             </div>
                             <div class="exp-meta">
-                                <div>Oct 2025 - Present</div>
-                                <span class="on-site-badge">Remote</span>
+                                <div>Oct 2025 – Dec 2025</div>
+                                <span class="on-site-badge">IIT Bhilai</span>
                             </div>
                         </div>
                         <p class="exp-description">
-                            Led 8-member engineering team to architect production-grade multi-agent financial AI system. Designed 7-layer architecture with temporal data fabric, hybrid ML/RL forecasting pipeline, and agentic debate framework.
+                            Led 8-member engineering team to architect production-grade multi-agent financial AI system combining real-time streaming, reinforcement learning, and explainable LLM reasoning. Designed complete 7-layer architecture with temporal data fabric, hybrid ML/RL forecasting pipeline, agentic debate framework, and real-time risk engine. Delivered end-to-end platform integrating live market/news/social data with causal knowledge graph, achieving ~20% returns with 5–8% max drawdown over backtested and paper-traded horizon.
                         </p>
                     </div>
                 </div>
@@ -85,18 +98,37 @@
                                 </div>
                             </div>
                             <div class="exp-meta">
-                                <div>Jun 2024 - Aug 2024</div>
-                                <span class="on-site-badge">On Site</span>
+                                <div>Jun 2024 – Aug 2024</div>
+                                <span class="on-site-badge">Remote</span>
                             </div>
                         </div>
                         <p class="exp-description">
-                            Developed multi-agent automation systems and secure REST APIs integrated with AWS and GCP. Optimized performance and reduced infrastructure costs by 25%.
+                            Developed multi-agent automation systems and secure REST APIs integrated with AWS and GCP, reducing manual effort by 40% and increasing throughput by 30%. Built cloud infrastructure maintaining 99.9% uptime through CI/CD pipelines. Optimized performance and reduced infrastructure costs by 25% through proactive monitoring and risk assessment.
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="about-actions" style="margin-top: 1.5rem;">
-                <a href="#" class="btn" style="border: none; background: transparent;"><i data-lucide="chevron-down"></i> Show more experiences</a>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education-section">
+            <h2 style="margin-bottom: 1.5rem;">Education</h2>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <div style="display: flex; align-items: center;">
+                        <div class="exp-logo"><i data-lucide="school"></i></div>
+                        <div class="exp-info">
+                            <div class="title">B.Tech in Data Science and AI</div>
+                            <div class="company">Indian Institute of Technology Bhilai</div>
+                        </div>
+                    </div>
+                    <div class="exp-meta">
+                        <div>Aug 2023 – May 2027 (Expected)</div>
+                    </div>
+                </div>
+                <p class="exp-description" style="margin-top: 1rem;">
+                    Coordinator, DSAI Club — organized hackathon and workshops promoting AI-driven innovation across 200+ students. Led hands-on ML sessions for applied ML and research-oriented projects. <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Machine Learning, Natural Language Processing, Deep Learning, Database Management Systems, Statistics, Operating Systems
+                </p>
             </div>
         </section>
 
@@ -106,7 +138,7 @@
                 <h2 style="margin-bottom: 0;">Featured Open Source Work</h2>
                 <span class="on-site-badge" style="background: #fff8e1; border-color: #ffe082;"><i data-lucide="star" style="width: 12px; vertical-align: middle;"></i> 1.2k total stars</span>
             </div>
-            <div class="projects-grid">
+            <div class="projects-grid" id="repos-grid">
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-name">humanslop <i data-lucide="external-link" style="width: 14px;"></i></div>
@@ -140,9 +172,72 @@
                         <span class="tag">PyPI</span>
                     </div>
                 </div>
+
+                <!-- Extra Repos Hidden Initially -->
+                <div class="project-card repo-extra" style="display: none;">
+                    <div class="project-header">
+                        <div class="project-name">Kerala-Ayurveda-RAG <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 124</div>
+                            <div class="stat-item"><i data-lucide="git-fork"></i> 18</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Production-grade multi-agent medical RAG system using GPT-4, LangGraph, and CRAG with hybrid BM25+vector retrieval.</p>
+                    <div class="project-tags">
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">CRAG</span>
+                        <span class="tag">FastAPI</span>
+                    </div>
+                </div>
+
+                <div class="project-card repo-extra" style="display: none;">
+                    <div class="project-header">
+                        <div class="project-name">Student Performance Enhancer <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 85</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Modular ML pipeline with ensemble models (R² 0.989), SHAP explainability, and MLflow tracking.</p>
+                    <div class="project-tags">
+                        <span class="tag">SHAP</span>
+                        <span class="tag">Ensemble</span>
+                        <span class="tag">MLflow</span>
+                    </div>
+                </div>
+
+                <div class="project-card repo-extra" style="display: none;">
+                    <div class="project-header">
+                        <div class="project-name">PagedAttention-Transformer <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 64</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Memory-efficient KV Cache implementation reducing usage by 60-80% for production LLM deployment.</p>
+                    <div class="project-tags">
+                        <span class="tag">CUDA</span>
+                        <span class="tag">Transformer</span>
+                        <span class="tag">Inference</span>
+                    </div>
+                </div>
+
+                <div class="project-card repo-extra" style="display: none;">
+                    <div class="project-header">
+                        <div class="project-name">Bomberman-AI <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 42</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Intelligent agent-based game with state-based behavior (search, chase, evade) and A* pathfinding.</p>
+                    <div class="project-tags">
+                        <span class="tag">Agent AI</span>
+                        <span class="tag">Pathfinding</span>
+                    </div>
+                </div>
             </div>
             <div class="about-actions" style="margin-top: 1.5rem; justify-content: center;">
-                <a href="#" class="btn" style="border: none; background: transparent;"><i data-lucide="chevron-down"></i> Show more repositories</a>
+                <button id="load-more-btn" class="btn" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                    <i data-lucide="chevron-down" id="load-more-icon"></i> <span id="load-more-text">Show more repositories</span>
+                </button>
             </div>
         </section>
 
@@ -308,18 +403,6 @@
         </a>
     </nav>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Active link handling
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
