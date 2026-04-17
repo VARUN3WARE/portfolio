@@ -1,640 +1,325 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link
-      rel="icon"
-      type="image/png"
-      href="images/favicon/favicon-96x96.png"
-      sizes="96x96"
-    />
-    <link rel="icon" type="image/svg+xml" href="images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="images/favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="images/favicon/site.webmanifest" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Varun Rao — AI/ML Engineer</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="container-nav">
-        <div class="logo">
-          <a href="#home">Varun Rao</a>
-        </div>
-        <ul class="nav-menu">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-        </ul>
-        <div class="theme-toggle" id="theme-toggle">
-          <span class="sun">☀️</span>
-          <span class="moon">🌙</span>
-        </div>
-      </div>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-layout">
+                <div class="hero-text">
+                    <h1 class="name">Varun Rao</h1>
+                    <p class="role">AI/ML Engineer, Building Intelligent Systems at Scale</p>
+                    
+                    <div class="hero-socials">
+                        <a href="mailto:varunr@iitbhilai.ac.in" class="hero-social-link"><i data-lucide="mail"></i></a>
+                        <a href="https://github.com/VARUN3WARE" target="_blank" class="hero-social-link"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com/in/varun3ware/" target="_blank" class="hero-social-link"><i data-lucide="linkedin"></i></a>
+                        <a href="https://x.com/VarunrRao" target="_blank" class="hero-social-link"><i data-lucide="twitter"></i></a>
+                        <a href="https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu" target="_blank" class="hero-social-link btn-cv">
+                            <i data-lucide="file-text"></i> CV
+                        </a>
+                    </div>
+                </div>
+                <!-- Avatar placeholder until image is provided -->
+                <div class="avatar-container">
+                    <div class="avatar-placeholder">VR</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About</h2>
+            <p>
+                Building AI that actually works! Currently deep into Vision-Language Models and Agentic Systems, with hands-on experience taking AI projects from wild ideas to real products. Love tinkering with model fine-tuning and cloud deployments. Big open-source enthusiast — you'll find me contributing to projects that make AI more accessible to everyone.
+            </p>
+            <div class="about-actions">
+                <a href="#experience" class="btn"><i data-lucide="plus-circle"></i> More About Me</a>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="work" class="experience-section">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div style="display: flex; align-items: center;">
+                                <div class="exp-logo"><i data-lucide="microchip"></i></div>
+                                <div class="exp-info">
+                                    <div class="title">Team Lead — Autonomous Financial Intelligence</div>
+                                    <div class="company">Independent Research</div>
+                                </div>
+                            </div>
+                            <div class="exp-meta">
+                                <div>Oct 2025 - Present</div>
+                                <span class="on-site-badge">Remote</span>
+                            </div>
+                        </div>
+                        <p class="exp-description">
+                            Led 8-member engineering team to architect production-grade multi-agent financial AI system. Designed 7-layer architecture with temporal data fabric, hybrid ML/RL forecasting pipeline, and agentic debate framework.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="experience-card">
+                        <div class="exp-header">
+                            <div style="display: flex; align-items: center;">
+                                <div class="exp-logo"><i data-lucide="terminal"></i></div>
+                                <div class="exp-info">
+                                    <div class="title">AI Developer Intern</div>
+                                    <div class="company">Kartavya Technology</div>
+                                </div>
+                            </div>
+                            <div class="exp-meta">
+                                <div>Jun 2024 - Aug 2024</div>
+                                <span class="on-site-badge">On Site</span>
+                            </div>
+                        </div>
+                        <p class="exp-description">
+                            Developed multi-agent automation systems and secure REST APIs integrated with AWS and GCP. Optimized performance and reduced infrastructure costs by 25%.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-actions" style="margin-top: 1.5rem;">
+                <a href="#" class="btn" style="border: none; background: transparent;"><i data-lucide="chevron-down"></i> Show more experiences</a>
+            </div>
+        </section>
+
+        <!-- Featured Open Source Work -->
+        <section id="projects" class="projects-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 0;">Featured Open Source Work</h2>
+                <span class="on-site-badge" style="background: #fff8e1; border-color: #ffe082;"><i data-lucide="star" style="width: 12px; vertical-align: middle;"></i> 1.2k total stars</span>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">humanslop <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 452</div>
+                            <div class="stat-item"><i data-lucide="git-fork"></i> 42</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Privacy-first social platform that blocks 100% of AI-generated content using hardware-bound biometric authentication and real-time typing forensics.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">React Native</span>
+                        <span class="tag">Supabase</span>
+                        <span class="tag">Biometrics</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">pytorch-dml <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 850</div>
+                            <div class="stat-item"><i data-lucide="git-fork"></i> 120</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Production-ready PyTorch library for Deep Mutual Learning enabling collaborative neural network training where multiple networks learn from each other's predictions.</p>
+                    <div class="project-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">DML</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">PyPI</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-actions" style="margin-top: 1.5rem; justify-content: center;">
+                <a href="#" class="btn" style="border: none; background: transparent;"><i data-lucide="chevron-down"></i> Show more repositories</a>
+            </div>
+        </section>
+
+        <!-- Academic Publications -->
+        <section id="publications" class="publications-section">
+            <h2>Academic Publications</h2>
+            <div class="timeline" style="border-left: none; padding-left: 0; margin-left: 0;">
+                <div class="experience-card" style="margin-bottom: 1rem;">
+                    <div class="exp-header">
+                        <div class="exp-info">
+                            <div class="title">Nayana: A Foundation for Document-Centric Vision-Language Models</div>
+                            <div class="company" style="margin-top: 0.25rem;">Workshop on CV4DC • 2025 • <span style="color: #10b981;">Accepted</span></div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="on-site-badge">ICCV 2025</span>
+                        </div>
+                    </div>
+                    <div class="project-tags" style="margin-top: 1rem;">
+                        <span class="tag">Dataset Generation</span>
+                        <span class="tag">Multimodal AI</span>
+                        <span class="tag">Document Understanding</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <h2>Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i data-lucide="brain-circuit"></i> AI/ML/DL</h3>
+                    <div class="skill-tags">
+                        <div class="skill-pill"><i data-lucide="check"></i> PyTorch</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> Transformers</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> LangChain</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> RL</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> Vision-Language Models</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i data-lucide="code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <div class="skill-pill"><i data-lucide="check"></i> Python</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> JavaScript</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> C++</div>
+                        <div class="skill-pill"><i data-lucide="check"></i> SQL</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-actions" style="margin-top: 1.5rem; justify-content: center;">
+                <p class="muted" style="font-size: 0.875rem;">Showing 24 total skills</p>
+            </div>
+        </section>
+
+        <!-- Achievements & News -->
+        <section id="achievements" class="achievements-section">
+            <h2>Achievements & News</h2>
+            <div class="achievement-list">
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i data-lucide="award"></i></div>
+                    <div>
+                        <div class="achievement-title">Kaggle Silver Medal — Commodity Prediction</div>
+                        <p class="achievement-desc">Ranked 36/1,711 teams (top 2%) building predictive models for stable commodity returns.</p>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i data-lucide="rocket"></i></div>
+                    <div>
+                        <div class="achievement-title">YC Startup School India — Co-founder Human Slop</div>
+                        <p class="achievement-desc">Building an anti-AI social platform using biometric finger-printing and typing forensics.</p>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon"><i data-lucide="trophy"></i></div>
+                    <div>
+                        <div class="achievement-title">Pixel Perfect Hackathon Winner</div>
+                        <p class="achievement-desc">Led the team to improve baseline ML results by 23% under tight computational constraints.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Blog Posts -->
+        <section id="blog" class="blog-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="margin-bottom: 0;">Latest Blog Posts</h2>
+                <a href="https://medium.com/@varunrao.aiml" target="_blank" class="muted" style="font-size: 0.875rem;">View all posts <i data-lucide="arrow-up-right" style="width: 14px; vertical-align: middle;"></i></a>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-date"><i data-lucide="calendar"></i> 2025-06-11 • 8 min read</div>
+                    <div class="blog-title">Cursor for Image Editing: A Multi-Agent Approach for Visual Content Creation</div>
+                    <div class="project-tags">
+                        <span class="tag">Multi-Agent Systems</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-date"><i data-lucide="calendar"></i> 2025-01-10 • 15 min read</div>
+                    <div class="blog-title">Building Ambari-7b: India's First Kannada-English Bilingual LLM</div>
+                    <div class="project-tags">
+                        <span class="tag">LLM Training</span>
+                        <span class="tag">Bilingual Models</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section" style="text-align: center; padding: 6rem 0;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Let's Be Crazy Together</h2>
+            <p style="max-width: 500px; margin: 0 auto 2.5rem; color: var(--text-secondary);">
+                Always wrangling with new ideas, executing 5%, and failing at 90%, still saying yes to anyone's Idea.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="mailto:varunr@iitbhilai.ac.in" class="btn primary" style="padding: 0.75rem 2rem; border-radius: 12px; font-size: 1rem;">Send Email</a>
+            </div>
+            <div class="hero-socials" style="justify-content: center; margin-top: 3rem;">
+                <a href="https://github.com/VARUN3WARE" target="_blank" class="hero-social-link">GitHub</a>
+                <a href="https://linkedin.com/in/varun3ware/" target="_blank" class="hero-social-link">LinkedIn</a>
+                <a href="https://medium.com/@varunrao.aiml" target="_blank" class="hero-social-link">Medium</a>
+                <a href="https://x.com/VarunrRao" target="_blank" class="hero-social-link">Twitter</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding: 2rem 0; text-align: center; border-top: 1px solid var(--border);">
+            <p class="muted" style="font-size: 0.85rem;">© 2025 Varun Rao. Built with Absurdness.</p>
+        </footer>
+
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <a href="#home" class="nav-item active">
+            <i data-lucide="home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#about" class="nav-item">
+            <i data-lucide="user"></i>
+            <span>About</span>
+        </a>
+        <a href="#work" class="nav-item">
+            <i data-lucide="briefcase"></i>
+            <span>Work</span>
+        </a>
+        <a href="#blog" class="nav-item">
+            <i data-lucide="book-open"></i>
+            <span>Blog</span>
+        </a>
+        <a href="#projects" class="nav-item">
+            <i data-lucide="code-2"></i>
+            <span>Projects</span>
+        </a>
+        <a href="#education" class="nav-item">
+            <i data-lucide="graduation-cap"></i>
+            <span>Education</span>
+        </a>
+        <a href="#menu" class="nav-item">
+            <i data-lucide="layout-grid"></i>
+            <span>Menu</span>
+        </a>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-header">
-            <h1 class="hero-title">AI ate my Creatine</h1>
-            <p class="hero-subtitle">Funny ML Guy, Co-founding of Human Slop</p>
-          </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-          <p class="hero-description">
-            Started as a Data Scientist wrangling messy datasets and building
-            predictive models, But soon I realized that my true passion lies
-            beyond just data and more towards AI systems and Deep Learning. And
-            worked on a wide range of projects for hackathons, competitions,
-            personal research, and Internship. Got fed up Building in AI all the
-            time hence Co-founded Human Slop (Anti-AI Social Platform)
-          </p>
-
-          <!-- CTA Buttons -->
-          <div class="cta-buttons">
-            <a
-              href="https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu"
-              target="_blank"
-              class="cta-button primary"
-              >View Resume</a
-            >
-            <a
-              href="https://medium.com/@varunrao.aiml"
-              target="_blank"
-              class="cta-button secondary"
-              >Read My Writing</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Work Section -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Featured Works</h2>
-          <p class="section-subtitle">Some of the ideas I tried.</p>
-        </div>
-
-        <!-- Kerala Ayurveda RAG System -->
-        <div class="project-card">
-          <div class="project-tag">Live on Internet</div>
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">HumanSlop</h3>
-              <p class="project-description">
-                Privacy-first social platform that blocks 100% of AI-generated
-                content using hardware-bound biometric authentication and
-                real-time typing forensics. Dual-database architecture analyzes
-                keystroke patterns (WPM, burst timing, pauses) to compute a
-                "Human Score" proving organic authorship. Currently deployed on
-                web and mobile.
-              </p>
-              <div class="tech-stack">
-                <span>FastAPI</span>
-                <span>React Native</span>
-                <span>Supabase</span>
-                <span>Device Fingerprinting</span>
-                <span>Biometric Auth</span>
-              </div>
-              <a href="https://humanslop.in" class="link-button" target="_blank"
-                >Go To Website</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- pytorch-dml Project -->
-        <div class="project-card featured">
-          <div class="project-tag">Published on PyPI</div>
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">pytorch-dml</h3>
-              <p class="project-description">
-                Production-ready PyTorch library for Deep Mutual Learning
-                enabling collaborative neural network training. Implements
-                state-of-the-art DML techniques where multiple networks train
-                together and learn from each other's predictions, achieving 2-5%
-                accuracy improvement over independent training. Includes 34
-                modular components with AMP, DDP, ONNX export, and comprehensive
-                test coverage.
-                <strong>2-5% higher accuracy</strong> compared to independent
-                training.
-              </p>
-
-              <div class="project-links">
-                <a
-                  href="https://github.com/VARUN3WARE/dml-py"
-                  class="link-button"
-                  target="_blank"
-                  >GitHub Repo</a
-                >
-                <a
-                  href="https://pypi.org/project/pytorch-dml/"
-                  class="link-button primary"
-                  target="_blank"
-                  >View on PyPI</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Autonomous Financial Intelligence Platform -->
-        <div class="project-card">
-          <div class="project-tag">Production Ready</div>
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">
-                Hedgera - Autonomous Financial Intelligence Platform
-              </h3>
-              <p class="project-description">
-                Multi-agent AI system for autonomous market analysis and
-                portfolio management. Led 8-member engineering team to design
-                7-layer architecture combining real-time data streaming
-                (Pathway), reinforcement learning, and explainable LLM
-                reasoning. Generated ~20% returns with 5–8% max drawdown over
-                backtested and paper-traded horizon with complete transparency
-                and auditability.
-              </p>
-              <div class="tech-stack">
-                <span>PyTorch</span>
-                <span>LangChain</span>
-                <span>RL</span>
-                <span>Real-time Streaming</span>
-                <span>Multi-Agent Systems</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/Hedgera"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Kerala Ayurveda Medical RAG System -->
-        <div class="project-card">
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">Kerala Ayurveda Medical RAG System</h3>
-              <p class="project-description">
-                Production-grade multi-agent Retrieval-Augmented Generation
-                system for Ayurvedic medical knowledge. Implements CRAG
-                framework with hybrid BM25 + vector retrieval, reducing
-                hallucinations to <10% (RAGAS score) and improving retrieval
-                accuracy by 35%. Deployed as FastAPI service with interactive
-                Streamlit interface.
-              </p>
-              <div class="tech-stack">
-                <span> GPT-4 </span>
-                <span>LangGraph</span>
-                <span>CRAG</span>
-                <span>ChromaDB</span>
-                <span>FastAPI</span>
-                <span>Streamlit</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/Kerala-Ayurveda-RAG"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Student Performance -->
-        <div class="project-card">
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">Student Performance Enhancer</h3>
-              <p class="project-description">
-                End-to-end ML pipeline with ensemble models (XGBoost + Linear
-                Regression) achieving R² of 0.989 for academic risk prediction.
-                Integrated SHAP explainability for model interpretability,
-                MLflow for experiment tracking, and deployed interactive
-                Streamlit dashboard with versioned models and reproducible
-                training pipeline.
-              </p>
-              <div class="tech-stack">
-                <span>Ensemble ML</span>
-                <span>SHAP</span>
-                <span>Streamlit</span>
-                <span>MLflow</span>
-                <span>DVC</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/kaggle-Student-Performance"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- PagedAttention -->
-        <div class="project-card">
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">PagedAttention Transformer</h3>
-              <p class="project-description">
-                Memory-efficient Transformer attention mechanism with
-                block-based KV caching, reducing memory usage by 60–80%.
-                Implemented copy-on-write (COW) for beam search, recompute/swap
-                strategies, and parallel sampling to boost inference throughput
-                by 2.3x for production LLM deployment.
-              </p>
-              <div class="tech-stack">
-                <span>Transformers</span>
-                <span>KV Cache</span>
-                <span>Memory Optimization</span>
-                <span>CUDA</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/paged-Attention"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Poetry Generation -->
-        <div class="project-card">
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">
-                Reciprocal Contextual Poetry Generation
-              </h3>
-              <p class="project-description">
-                Research project combining PPLM steering with lightweight RLHF
-                proxy (reward model + supervised fine-tuning) for generating
-                context-aware poetry. Built modular experiment framework with
-                reproducible pipelines for training, evaluation, and batch
-                sweeps tracking reward, perplexity, and distinctness metrics.
-              </p>
-              <div class="tech-stack">
-                <span>NLP</span>
-                <span>PPLM</span>
-                <span>RLHF</span>
-                <span>LLMs</span>
-                <span>PyTorch</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/Reciprocal-Contextual-Poetry-Generation/"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Bomberman AI -->
-        <div class="project-card">
-          <div class="project-grid">
-            <div class="project-info">
-              <h3 class="project-title">
-                Bomberman AI — Intelligent Agent-Based Game
-              </h3>
-              <p class="project-description">
-                Full Bomberman game implementation with AI-driven bot agents
-                capable of strategic decision-making. Implemented A*
-                pathfinding, state-based behavior (search, chase, evade), bomb
-                safety simulation, and intelligent evasion scoring to create
-                adaptive opponents with real-time decision-making.
-              </p>
-              <div class="tech-stack">
-                <span>AI/Agents</span>
-                <span>A* Pathfinding</span>
-                <span>Python</span>
-                <span>Tkinter</span>
-              </div>
-              <a
-                href="https://github.com/VARUN3WARE/Bomberman-AI-Project-Group-17-CSL304-Artificial-Intelligence-"
-                class="link-button"
-                target="_blank"
-                >View Project</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">The Journey So Far</h2>
-          <p class="section-subtitle">Random</p>
-        </div>
-
-        <div class="timeline">
-          <!-- Experience -->
-          <div class="timeline-section">
-            <h3 class="timeline-label">Work Experience</h3>
-
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <div class="timeline-content">
-                <h4 class="role">
-                  Team Lead — Autonomous Financial Intelligence
-                </h4>
-                <p class="company">Independent Research</p>
-                <p class="duration">Oct 2025 – Dec 2025</p>
-                <p class="description">
-                  Led 8-member engineering team to architect production-grade
-                  multi-agent financial AI system combining real-time streaming,
-                  reinforcement learning, and explainable LLM reasoning.
-                  Designed complete 7-layer architecture with temporal data
-                  fabric, hybrid ML/RL forecasting pipeline, agentic debate
-                  framework, and real-time risk engine. Delivered end-to-end
-                  platform integrating live market/news/social data with causal
-                  knowledge graph, achieving ~20% returns with 5–8% max drawdown
-                  over backtested and paper-traded horizon.
-                </p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <div class="timeline-content">
-                <h4 class="role">AI Developer Intern</h4>
-                <p class="company">Kartavya Technology</p>
-                <p class="duration">Jun 2024 – Aug 2024</p>
-                <p class="description">
-                  Developed multi-agent automation systems and secure REST APIs
-                  integrated with AWS and GCP, reducing manual effort by 40% and
-                  increasing throughput by 30%. Built cloud infrastructure
-                  maintaining 99.9% uptime through CI/CD pipelines. Optimized
-                  performance and reduced infrastructure costs by 25% through
-                  proactive monitoring and risk assessment.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Education -->
-          <div class="timeline-section">
-            <h3 class="timeline-label">Education</h3>
-
-            <div class="timeline-item">
-              <div class="timeline-marker"></div>
-              <div class="timeline-content">
-                <h4 class="role">B.Tech in Data Science and AI</h4>
-                <p class="company">Indian Institute of Technology Bhilai</p>
-                <p class="duration">Aug 2023 – May 2027 (Expected)</p>
-                <p class="description">
-                  Coordinator, DSAI Club — organized hackathon and workshops
-                  promoting AI-driven innovation across 200+ students. Led
-                  hands-on ML sessions for applied ML and research-oriented
-                  projects. Relevant Coursework: Data Structures & Algorithms,
-                  Machine Learning, Natural Language Processing, Deep Learning,
-                  Database Management Systems, Statistics, Operating Systems
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Core Competencies</h2>
-          <p class="section-subtitle">
-            Exploration I did in Tech Before my brain got eaten by Zombies
-          </p>
-        </div>
-
-        <div class="skills-image-container">
-          <img
-            src="images/skills-wordplot.png"
-            alt="Core Competencies Word Plot"
-            class="skills-image"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">About</h2>
-          <p class="section-subtitle">AI wrote my Code not My Philosophy</p>
-        </div>
-
-        <div class="about-content">
-          <div class="about-text">
-            <h3>My Mission</h3>
-            <p>
-              I had a childhood dream of building intelligent machines that only
-              I have access to and not for industry but just for fun. But in
-              deep down fast paced competitive world,I somehow forgot it, but
-              now I am getting back on track building cool and sexy techs. I
-              believe the best AI is the AI that ships. And best work is when AI
-              is used for assistance and not for replacement. Stucked in College
-              Pre-Final Year while Co-building Human Slop and writing technical
-              deep-dives.
-            </p>
-            <p>Based in Kanpur, India • IIT Bhilai</p>
-          </div>
-
-          <div class="about-text">
-            <h3>Design Philosophy</h3>
-            <ul class="philosophy-list">
-              <li>
-                <strong>Ship, don't just prototype: </strong> Production-first
-                mindset from day one
-              </li>
-              <!-- <li>
-                <strong>Measure what matters:</strong> Every optimization needs
-                metrics, every claim needs proof
-              </li> -->
-              <li>
-                <strong>Learn in public:</strong> Share knowledge through code,
-                articles, and open-source contributions I
-              </li>
-              <li>
-                <strong>Own the problem:</strong> Take full responsibility from
-                architecture to deployment
-              </li>
-              <!-- <li>
-                <strong>Build to scale:</strong> TIf it doesn't work at 10x, it
-                doesn't work
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Achievements & Recognition Section -->
-    <section id="achievements" class="achievements">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Achievements & Recognition</h2>
-          <p class="section-subtitle">Some Highlights to Blabber about of me</p>
-        </div>
-
-        <div class="achievements-list">
-          <div class="achievement-item">
-            <span class="achievement-emoji">🥈</span>
-            <div class="achievement-content">
-              <h4>
-                Kaggle Silver Medal — MITSUI & CO. Commodity Prediction
-                Challenge
-              </h4>
-              <p>
-                Ranked 36/1,711 teams (top 2%) building stable commodity return
-                forecasting models.
-              </p>
-            </div>
-          </div>
-
-          <div class="achievement-item">
-            <span class="achievement-emoji">📊</span>
-            <div class="achievement-content">
-              <h4>Kaggle Top 10% — GQ Volatility Forecasting Challenge</h4>
-              <p>
-                Ranked 34/386 participants forecasting Ethereum volatility with
-                high-frequency data as in 2 weeks of intense competition.
-              </p>
-            </div>
-          </div>
-
-          <div class="achievement-item">
-            <span class="achievement-emoji">🚀</span>
-            <div class="achievement-content">
-              <h4>YC Startup School India Bengaluru 2026</h4>
-              <p>
-                Co-founding Human Slop, building anti-AI social platform with
-                typing forensics.
-              </p>
-            </div>
-          </div>
-
-          <div class="achievement-item">
-            <span class="achievement-emoji">🏆</span>
-            <div class="achievement-content">
-              <h4>Amazon ML Challenge 2025 — All-India Rank 278</h4>
-              <p>
-                Competed among thousands of participants nationwide building a
-                robust VLM-based solution.
-              </p>
-            </div>
-          </div>
-
-          <div class="achievement-item">
-            <span class="achievement-emoji">🎯</span>
-            <div class="achievement-content">
-              <h4>Pixel Perfect Hackathon Winner (IIT Bhilai)</h4>
-              <p>
-                Led team to improve baseline ML results by 23% under tight
-                computational constraints.
-              </p>
-            </div>
-          </div>
-
-          <div class="achievement-item">
-            <span class="achievement-emoji">✍️</span>
-            <div class="achievement-content">
-              <h4>Technical Writer — 70+ Articles, 800+ Monthly Readers</h4>
-              <p>
-                Publishing my random deep-dives on Medium covering tech fun
-                rides.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="contact-content">
-          <h2 class="contact-title">Let's Be Crazy Together</h2>
-          <p class="contact-subtitle">
-            Always wrangling with new ideas executing only 5% of them and
-            failing at 90%, Still saying yes to anyone's Idea.
-          </p>
-
-          <div class="contact-links">
-            <a href="mailto:varunr@iitbhilai.ac.in" class="contact-button"
-              >Send Email</a
-            >
-            <!-- <a
-              href="https://github.com/VARUN3WARE"
-              class="contact-button secondary"
-              target="_blank"
-              >GitHub</a
-            >
-            <a
-              href="https://www.linkedin.com/in/varun3ware/"
-              class="contact-button secondary"
-              target="_blank"
-              >LinkedIn</a
-            > -->
-          </div>
-
-          <div class="social-links">
-            <a
-              href="https://github.com/VARUN3WARE"
-              target="_blank"
-              class="social"
-              >GitHub</a
-            >
-            <a
-              href="https://www.linkedin.com/in/varun3ware/"
-              target="_blank"
-              class="social"
-              >LinkedIn</a
-            >
-            <a
-              href="https://medium.com/@varunrao.aiml"
-              target="_blank"
-              class="social"
-              >Medium</a
-            >
-            <a href="https://x.com/VarunrRao" target="_blank" class="social"
-              >Twitter</a
-            >
-            <a
-              href="https://www.kaggle.com/varunraosfanlkan"
-              target="_blank"
-              class="social"
-              >Kaggle</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2025 Varun Rao. Built with Copilot and my Absurdness.</p>
-      </div>
-    </footer>
-
-    <script src="js/main.js"></script>
-  </body>
+        // Active link handling
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
 </html>
