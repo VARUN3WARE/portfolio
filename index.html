@@ -124,18 +124,18 @@
                     </div>
                 </div>
                 <p class="exp-description" style="margin-top: 1rem;">
-                    Coordinator, DSAI Club — organized hackathon and workshops promoting AI-driven innovation across 200+ students. Led hands-on ML sessions for applied ML and research-oriented projects. <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Machine Learning, Natural Language Processing, Deep Learning, Database Management Systems, Statistics, Operating Systems
+                    Coordinator, DSAI Club — organized hackathon and workshops promoting AI-driven innovation across 200+ students. Led hands-on ML sessions for applied ML and research-oriented projects.<br> <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Machine Learning, Natural Language Processing, Deep Learning, Database Management Systems, Statistics, Operating Systems
                 </p>
             </div>
         </section>
         <br>
         <!-- Featured Open Source Work -->
-        <section id="projects" class="projects-section">
+        <section id="featured" class="projects-section">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                 <h2 style="margin-bottom: 0;">Featured Work</h2>
                 <span class="on-site-badge" style="background: #fff8e1; border-color: #ffe082;"><i data-lucide="star" style="width: 12px; vertical-align: middle;"></i> 1.2k total stars</span>
             </div>
-            <div class="projects-grid" id="repos-grid">
+            <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-name">humanslop <i data-lucide="external-link" style="width: 14px;"></i></div>
@@ -169,14 +169,18 @@
                         <span class="tag">PyPI</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Extra Repos Hidden Initially -->
-                <div class="project-card repo-extra" style="display: none;">
+        <!-- Research Projects -->
+        <section id="research" class="projects-section">
+            <h2 style="margin-bottom: 1.5rem;">Research Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
                     <div class="project-header">
                         <div class="project-name">Kerala-Ayurveda-RAG <i data-lucide="external-link" style="width: 14px;"></i></div>
                         <div class="project-stats">
                             <div class="stat-item"><i data-lucide="star"></i> 124</div>
-                            <div class="stat-item"><i data-lucide="git-fork"></i> 18</div>
                         </div>
                     </div>
                     <p class="project-desc">Production-grade multi-agent medical RAG system using GPT-4, LangGraph, and CRAG with hybrid BM25+vector retrieval.</p>
@@ -187,22 +191,7 @@
                     </div>
                 </div>
 
-                <div class="project-card repo-extra" style="display: none;">
-                    <div class="project-header">
-                        <div class="project-name">Student Performance Enhancer <i data-lucide="external-link" style="width: 14px;"></i></div>
-                        <div class="project-stats">
-                            <div class="stat-item"><i data-lucide="star"></i> 85</div>
-                        </div>
-                    </div>
-                    <p class="project-desc">Modular ML pipeline with ensemble models (R² 0.989), SHAP explainability, and MLflow tracking.</p>
-                    <div class="project-tags">
-                        <span class="tag">SHAP</span>
-                        <span class="tag">Ensemble</span>
-                        <span class="tag">MLflow</span>
-                    </div>
-                </div>
-
-                <div class="project-card repo-extra" style="display: none;">
+                <div class="project-card">
                     <div class="project-header">
                         <div class="project-name">PagedAttention-Transformer <i data-lucide="external-link" style="width: 14px;"></i></div>
                         <div class="project-stats">
@@ -217,7 +206,40 @@
                     </div>
                 </div>
 
-                <div class="project-card repo-extra" style="display: none;">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">Reciprocal Contextual Poetry Generation <i data-lucide="external-link" style="width: 14px;"></i></div>
+                    </div>
+                    <p class="project-desc">Designed a modular experiment framework combining PPLM steering, a lightweight RLHF proxy, and hybrid inference-time control.</p>
+                    <div class="project-tags">
+                        <span class="tag">RLHF</span>
+                        <span class="tag">PPLM</span>
+                        <span class="tag">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Projects -->
+        <section id="projects" class="projects-section">
+            <h2 style="margin-bottom: 1.5rem;">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-name">Student Performance Enhancer <i data-lucide="external-link" style="width: 14px;"></i></div>
+                        <div class="project-stats">
+                            <div class="stat-item"><i data-lucide="star"></i> 85</div>
+                        </div>
+                    </div>
+                    <p class="project-desc">Engineered v2 of Kaggle Student Performance Enhancer with ensemble models (R² 0.989) and SHAP explainability.</p>
+                    <div class="project-tags">
+                        <span class="tag">SHAP</span>
+                        <span class="tag">Ensemble</span>
+                        <span class="tag">MLflow</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
                     <div class="project-header">
                         <div class="project-name">Bomberman-AI <i data-lucide="external-link" style="width: 14px;"></i></div>
                         <div class="project-stats">
@@ -228,17 +250,13 @@
                     <div class="project-tags">
                         <span class="tag">Agent AI</span>
                         <span class="tag">Pathfinding</span>
+                        <span class="tag">Tkinter</span>
                     </div>
                 </div>
             </div>
-            <div class="about-actions" style="margin-top: 1.5rem; justify-content: center;">
-                <button id="load-more-btn" class="btn" style="border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
-                    <i data-lucide="chevron-down" id="load-more-icon"></i> <span id="load-more-text">Show more repositories</span>
-                </button>
-            </div>
         </section>
 
-        <!-- Academic Publications -->
+        <!-- Academic Publications
         <section id="publications" class="publications-section">
             <h2>Academic Publications</h2>
             <div class="timeline" style="border-left: none; padding-left: 0; margin-left: 0;">
@@ -259,7 +277,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Skills Section -->
         <section id="skills" class="skills-section">

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let scrollY = window.pageYOffset;
 
         sections.forEach(current => {
-            const sectionHeight = current.offsetHeight;
+            const sectionHeight = current.offsetHeight || 0;
             const sectionTop = current.offsetTop - 150;
             const sectionId = current.getAttribute('id');
 
@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    if (sections.length > 0) {
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    }
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -40,34 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.add('active');
         });
     });
-
-    // --- Show More Repositories Logic ---
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    const extraRepos = document.querySelectorAll('.repo-extra');
-    const loadMoreText = document.getElementById('load-more-text');
-    const loadMoreIcon = document.getElementById('load-more-icon');
-
-    if (loadMoreBtn) {
-        let isExpanded = false;
-
-        loadMoreBtn.addEventListener('click', () => {
-            isExpanded = !isExpanded;
-
-            extraRepos.forEach(repo => {
-                repo.style.display = isExpanded ? 'flex' : 'none';
-            });
-
-            // Update button text and icon
-            if (isExpanded) {
-                loadMoreText.textContent = 'Show fewer repositories';
-                loadMoreIcon.setAttribute('data-lucide', 'chevron-up');
-            } else {
-                loadMoreText.textContent = 'Show more repositories';
-                loadMoreIcon.setAttribute('data-lucide', 'chevron-down');
-            }
-
-            // Refresh icons for the toggle
-            lucide.createIcons();
-        });
-    }
 });
