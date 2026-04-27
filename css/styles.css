@@ -190,17 +190,8 @@ a {
   gap: 0.5rem;
 }
 
-.project-stats {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+.project-name:hover {
+  color: var(--accent);
 }
 
 .project-desc {
