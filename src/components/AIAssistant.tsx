@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Send, Bot, Sparkles, MessageSquare, Terminal } from 'lucide-react';
+import { X, Send, Bot, Sparkles, Terminal } from 'lucide-react';
 import { semanticSearch } from '../lib/embeddings';
 import { nodes } from '../data/portfolioGraph';
 import './ai-assistant.css';
