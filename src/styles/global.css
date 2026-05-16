@@ -126,6 +126,75 @@ button {
   pointer-events: none;
 }
 
+/* Intro reveal — hub outward */
+.react-flow__node.intro-pending {
+  opacity: 0;
+  transform: scale(0.88);
+  pointer-events: none;
+  transition: none;
+}
+
+.react-flow__node.intro-reveal {
+  animation: introNodePop 0.42s cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes introNodePop {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.react-flow__edge.intro-pending {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.react-flow__edge.intro-reveal .react-flow__edge-path {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  animation: introEdgeDraw 0.5s ease-out forwards;
+}
+
+@keyframes introEdgeDraw {
+  from {
+    opacity: 0;
+    stroke-dasharray: 8 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    opacity: 1;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+.canvas-root--intro .hud-top,
+.canvas-root--intro .search-wrap,
+.canvas-root--intro .persona-bar,
+.canvas-root--intro .cypher-strip,
+.canvas-root--intro .health-chip,
+.canvas-root--intro .story-launcher,
+.canvas-root--intro .ai-assistant-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .react-flow__minimap {
+    display: none !important;
+  }
+  .react-flow__controls {
+    left: 12px;
+    right: auto;
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
