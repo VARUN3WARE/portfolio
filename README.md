@@ -15,6 +15,8 @@ An interactive, full-viewport portfolio rendered as a graph. Each node is a sect
 - **Detail drawer** with structured deep-dives (problem / approach / stack / metrics / why) for marquee projects.
 - **Fit-mode chips** — AI Infra, LLM Systems, Research, Startup, Data Science — each lights the subgraph that proves that fit.
 - **Animated Story Mode** — picks a narrative (Origin / AI Infra / LLM / Research) and flies the camera through it.
+- **AI Shadow Assistant** — A lightweight, local-first chatbot that uses the TF-IDF engine to answer queries by identifying and linking to relevant graph nodes.
+- **Semantic Node Traversal** — "Similar Research" engine that suggests related projects based on content similarity, even without direct edges.
 - **AI Command Palette** (⌘K) — natural-language intents like "play journey", "why hire me", "CUDA projects" mixed with lexical + semantic search.
 - **TF-IDF semantic search** — in-memory cosine retrieval over node summaries, ready to swap for real embeddings later.
 - **Recruiter Mode** — graph-derived role-fit scores with evidence nodes and contact CTAs.
