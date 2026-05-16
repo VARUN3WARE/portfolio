@@ -98,11 +98,11 @@
 /* Search */
 .search-wrap {
   position: absolute;
-  top: 20px;
+  top: 16px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 9;
-  width: min(420px, calc(100vw - 280px));
+  z-index: 11;
+  width: min(360px, calc(100vw - 340px));
   pointer-events: auto;
 }
 
@@ -110,7 +110,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: var(--surface-strong);
   border: 1px solid var(--surface-border);
   border-radius: 999px;
@@ -144,14 +144,38 @@
 }
 
 .search-results {
-  margin-top: 8px;
+  margin-top: 6px;
   background: var(--surface-strong);
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  max-height: 60dvh;
+  max-height: min(200px, 28dvh);
   overflow: auto;
   backdrop-filter: blur(14px);
+}
+
+.search-results--compact {
+  max-height: min(148px, 22dvh);
+}
+
+.search-results--compact .cp-action,
+.search-results--compact .search-hit {
+  padding: 6px 10px;
+}
+
+.search-results--compact .cp-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+}
+
+.search-results--compact .cp-action-title,
+.search-results--compact .search-hit-title {
+  font-size: 12px;
+}
+
+.search-hit--compact .search-hit-sub {
+  display: none;
 }
 
 .search-hit {
@@ -199,8 +223,8 @@
     right: 12px;
   }
   .search-wrap {
-    top: 64px;
-    width: calc(100vw - 24px);
+    top: 56px;
+    width: min(320px, calc(100vw - 24px));
   }
   .hud-brand-role {
     display: none;

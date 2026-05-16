@@ -1,3 +1,4 @@
+import type { Persona } from '../data/personas';
 import {
   edges as allEdges,
   nodes as allNodes,
@@ -85,6 +86,33 @@ export function nodesByKind(
   nodes: GraphNode[] = allNodes,
 ): GraphNode[] {
   return nodes.filter((n) => n.kind === kind);
+}
+
+/**
+ * Build the highlight set for a persona: all pinned nodes plus any node
+ * whose tags match the persona's tag list (case-insensitive). The edges
+ * that lie entirely inside that set are also returned so the canvas can
+ * keep just the internal relationships lit.
+ */
+export function personaSubgraph(
+  persona: Persona,
+  idx: AdjacencyIndex,
+): { nodes: Set<string>; edges: Set<string> } {
+  const tagSet = new Set(persona.tags.map((t) => t.toLowerCase()));
+  const nodeIds = new Set<string>(persona.pinned);
+  for (const node of idx.byId.values()) {
+    if (nodeIds.has(node.id)) continue;
+    const tags = (node.tags ?? []).map((t) => t.toLowerCase());
+    if (tags.some((t) => tagSet.has(t))) nodeIds.add(node.id);
+  }
+  // Always anchor on hub so the lens looks like a connected sub-story.
+  nodeIds.add('hub');
+  const edgeIds = new Set<string>();
+  for (const [src, list] of idx.outgoing) {
+    if (!nodeIds.has(src)) continue;
+    for (const e of list) if (nodeIds.has(e.target)) edgeIds.add(e.id);
+  }
+  return { nodes: nodeIds, edges: edgeIds };
 }
 
 export interface SearchHit {

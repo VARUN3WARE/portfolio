@@ -1,11 +1,12 @@
-import { Home, Newspaper } from 'lucide-react';
+import { Home, Newspaper, Target } from 'lucide-react';
 import './hud.css';
 
 interface HUDProps {
   onHome: () => void;
+  onRecruiter: () => void;
 }
 
-export function HUD({ onHome }: HUDProps) {
+export function HUD({ onHome, onRecruiter }: HUDProps) {
   return (
     <header className="hud-top">
       <button className="hud-brand" onClick={onHome} aria-label="Recenter on Varun">
@@ -19,8 +20,15 @@ export function HUD({ onHome }: HUDProps) {
         <button className="hud-btn" onClick={onHome} aria-label="Recenter">
           <Home size={14} /> Recenter
         </button>
-        <a className="hud-btn primary" href="/classic.html">
-          <Newspaper size={14} /> Classic view
+        <button
+          className="hud-btn primary"
+          onClick={onRecruiter}
+          aria-label="Open recruiter mode"
+        >
+          <Target size={14} /> Why hire me?
+        </button>
+        <a className="hud-btn" href="/classic.html" aria-label="Open classic view">
+          <Newspaper size={14} /> Classic
         </a>
       </div>
     </header>

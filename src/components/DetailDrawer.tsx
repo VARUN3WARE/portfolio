@@ -16,8 +16,10 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useEffect } from 'react';
+import { deepDiveFor } from '../data/deepDives';
 import type { GraphNode, SocialLink } from '../data/portfolioGraph';
 import type { AdjacencyIndex } from '../lib/graphQueries';
+import { findSimilarNodes } from '../lib/embeddings';
 import './drawer.css';
 
 interface DetailDrawerProps {
@@ -75,6 +77,11 @@ export function DetailDrawer({
                 adjacency={adjacency}
                 onPick={onNeighborSelect}
               />
+              <SimilarResearch
+                node={node}
+                adjacency={adjacency}
+                onPick={onNeighborSelect}
+              />
             </div>
           </>
         )}
@@ -128,7 +135,8 @@ function DrawerContent({ node }: { node: GraphNode }) {
           <p>{d.summary}</p>
         </>
       );
-    case 'project':
+    case 'project': {
+      const dive = deepDiveFor(node.id);
       return (
         <>
           <p>{d.summary}</p>
@@ -145,8 +153,36 @@ function DrawerContent({ node }: { node: GraphNode }) {
               </a>
             </div>
           )}
+          {dive && (
+            <div className="deepdive">
+              <h4>Problem</h4>
+              <p>{dive.problem}</p>
+              <h4>Approach</h4>
+              <p>{dive.approach}</p>
+              <h4>Stack</h4>
+              <div className="drawer-tags" style={{ marginBottom: 12 }}>
+                {dive.stack.map((t) => (
+                  <span key={t} className="pill">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <h4>Metrics</h4>
+              <div className="deepdive-metrics">
+                {dive.metrics.map((m) => (
+                  <div key={m.label} className="deepdive-metric">
+                    <div className="v">{m.value}</div>
+                    <div className="l">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+              <h4>Why it matters</h4>
+              <p>{dive.whyItMatters}</p>
+            </div>
+          )}
         </>
       );
+    }
     case 'achievement': {
       const Icon = achievementIcon(d.icon);
       return (
@@ -232,6 +268,51 @@ function TagsBlock({ tags }: { tags: string[] }) {
             {t}
           </span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function SimilarResearch({
+  node,
+  adjacency,
+  onPick,
+}: {
+  node: GraphNode;
+  adjacency: AdjacencyIndex;
+  onPick: (id: string) => void;
+}) {
+  const similar = findSimilarNodes(node.id, 3);
+  if (!similar.length) return null;
+
+  return (
+    <div className="drawer-section">
+      <div className="drawer-section-title">Similar Research</div>
+      <div className="drawer-neighbors">
+        {similar.map((hit) => {
+          const other = adjacency.byId.get(hit.id);
+          if (!other) return null;
+          return (
+            <button
+              key={hit.id}
+              className="drawer-neighbor"
+              style={{ borderColor: 'rgba(52, 211, 153, 0.15)' }}
+              onClick={() => onPick(hit.id)}
+            >
+              <span>
+                <div style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: 13 }}>
+                  {other.label}
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--text-tertiary)' }}>
+                  {other.subtitle}
+                </div>
+              </span>
+              <span className="n-rel" style={{ color: 'var(--accent)' }}>
+                {Math.round(hit.score * 100)}% match
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
