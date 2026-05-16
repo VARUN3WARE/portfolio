@@ -716,13 +716,13 @@ export const edges: GraphEdge[] = [
   // Hub → sections
   ...sections.map((s) => edge('hub', s, 'BELONGS_TO')),
 
-  // Work
+  // Work hierarchy
   edge('work', 'exp-hedgera', 'BELONGS_TO'),
   edge('work', 'exp-kartavya', 'BELONGS_TO'),
   edge('hub', 'exp-hedgera', 'WORKED_AT', 'Team Lead'),
   edge('hub', 'exp-kartavya', 'WORKED_AT', 'Intern'),
 
-  // Education
+  // Education hierarchy
   edge('education', 'edu-iitbh', 'BELONGS_TO'),
   edge('hub', 'edu-iitbh', 'STUDIED_AT'),
 
@@ -733,19 +733,27 @@ export const edges: GraphEdge[] = [
   edge('hub', 'proj-humanslop', 'FOUNDED', 'Co-founder'),
   edge('hub', 'proj-dml', 'BUILT'),
   edge('hub', 'proj-hedgera', 'BUILT'),
-  // Hedgera links the work experience to the project
+  
+  // Experience-to-Project mappings
   edge('exp-hedgera', 'proj-hedgera', 'RELATED_TO', 'shipped'),
+  edge('exp-kartavya', 'proj-ayurveda-rag', 'RELATED_TO', 'RAG dev'),
 
-  // Academic
+  // Academic hierarchy
   edge('academic', 'proj-respect-gnn', 'BELONGS_TO'),
   edge('academic', 'proj-pplm-poetry', 'BELONGS_TO'),
   edge('academic', 'proj-bomberman', 'BELONGS_TO'),
   edge('academic', 'proj-wifi', 'BELONGS_TO'),
   edge('academic', 'proj-gnn-eadd', 'BELONGS_TO'),
   edge('academic', 'proj-bplussql', 'BELONGS_TO'),
-  edge('edu-iitbh', 'academic', 'RELATED_TO', 'coursework'),
+  
+  // Coursework / Research mappings
+  edge('edu-iitbh', 'proj-respect-gnn', 'RELATED_TO', 'research'),
+  edge('edu-iitbh', 'proj-bplussql', 'RELATED_TO', 'DBMS course'),
+  edge('edu-iitbh', 'proj-bomberman', 'RELATED_TO', 'AI course'),
+  edge('edu-iitbh', 'proj-wifi', 'RELATED_TO', 'Data Viz'),
+  edge('edu-iitbh', 'proj-gnn-eadd', 'RELATED_TO', 'research'),
 
-  // Blades
+  // Blades hierarchy
   edge('blades', 'proj-rapidadb', 'BELONGS_TO'),
   edge('blades', 'proj-evalforge', 'BELONGS_TO'),
   edge('blades', 'proj-ayurveda-rag', 'BELONGS_TO'),
@@ -753,19 +761,38 @@ export const edges: GraphEdge[] = [
   edge('blades', 'proj-pplm-watermark', 'BELONGS_TO'),
   edge('blades', 'proj-kaggle-students', 'BELONGS_TO'),
 
+  // --- Peer-to-Peer Technical "Blades" Relationships ---
+  // CUDA / High-Performance Systems Cluster
+  edge('proj-rapidadb', 'proj-paged-attn', 'RELATED_TO', 'CUDA optimization'),
+  edge('proj-rapidadb', 'proj-bplussql', 'RELATED_TO', 'systems engineering'),
+  edge('proj-paged-attn', 'proj-dml', 'RELATED_TO', 'DL inference'),
+  
+  // GNN / Graph Cluster
+  edge('proj-respect-gnn', 'proj-gnn-eadd', 'RELATED_TO', 'GNN architecture'),
+  
+  // LLM Steering / Watermarking Cluster
+  edge('proj-pplm-watermark', 'proj-pplm-poetry', 'RELATED_TO', 'PPLM steering'),
+  
+  // Agentic / RAG Cluster
+  edge('proj-hedgera', 'proj-ayurveda-rag', 'RELATED_TO', 'multi-agent RAG'),
+
   // Skills cluster
   edge('skills', 'skills-detail', 'BELONGS_TO'),
-  // Cross-cluster tag links — what powers each experience/project
   edge('exp-hedgera', 'skills-detail', 'USED', 'PyTorch · LangChain · RL'),
   edge('proj-dml', 'skills-detail', 'USED', 'PyTorch'),
   edge('proj-rapidadb', 'skills-detail', 'USED', 'C++ · CUDA'),
+  edge('proj-respect-gnn', 'skills-detail', 'USED', 'GNN · PyG'),
 
-  // Achievements
+  // Achievements hierarchy
   edge('achievements', 'ach-kaggle-silver', 'BELONGS_TO'),
   edge('achievements', 'ach-gq', 'BELONGS_TO'),
   edge('achievements', 'ach-yc', 'BELONGS_TO'),
   edge('achievements', 'ach-amazon', 'BELONGS_TO'),
   edge('achievements', 'ach-pixel-perfect', 'BELONGS_TO'),
-  edge('hub', 'ach-yc', 'AWARDED'),
-  edge('proj-humanslop', 'ach-yc', 'RELATED_TO', 'pitched'),
+  
+  // Achievement Contextual links
+  edge('ach-yc', 'proj-humanslop', 'RELATED_TO', 'startup'),
+  edge('ach-amazon', 'proj-respect-gnn', 'RELATED_TO', 'deep research'),
+  edge('ach-kaggle-silver', 'proj-kaggle-students', 'RELATED_TO', 'ensemble tech'),
+  edge('ach-pixel-perfect', 'proj-gnn-eadd', 'RELATED_TO', 'competition'),
 ];
