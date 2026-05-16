@@ -24,6 +24,7 @@ export function AIAssistant({
 }: { 
   onNodeSelect: (id: string) => void 
 }) {
+  /** Closed by default — never auto-open on load. */
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
@@ -37,6 +38,13 @@ export function AIAssistant({
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    if (window.matchMedia('(max-width: 720px)').matches) return;
+    const input = document.querySelector<HTMLInputElement>('.ai-input');
+    input?.focus();
+  }, [isOpen]);
 
   const handleSend = useCallback(async (text: string) => {
     if (!text.trim()) return;
@@ -138,8 +146,7 @@ export function AIAssistant({
               className="ai-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything..."
-              autoFocus
+              placeholder="Ask anything…"
             />
             <button className="ai-send" type="submit">
               <Send size={16} />

@@ -41,7 +41,10 @@ import { RecruiterPanel } from './RecruiterPanel';
 import { SearchPanel, type CommandActions } from './SearchPanel';
 import { StoryLauncher, StoryPlayer } from './StoryPlayer';
 import { AIAssistant } from './AIAssistant';
+import { OnboardingHint } from './OnboardingHint';
+import { useIntroReveal } from '../hooks/useIntroReveal';
 import { HubNode } from './nodes/HubNode';
+import './onboarding.css';
 import {
   AchievementNode,
   EducationNode,
@@ -88,12 +91,37 @@ function CanvasShell() {
   const [state, setState] = useState<CanvasState>(initialState);
   const flow = useReactFlow();
   const initialFitRef = useRef(false);
+  const introFitRef = useRef(false);
+  const {
+    isAnimating,
+    isDone: introDone,
+    revealedNodes,
+    revealedEdges,
+    skipIntro,
+    phase: introPhase,
+  } = useIntroReveal();
 
   /* Pre-warm the embedding index after first paint. */
   useEffect(() => {
     const t = window.setTimeout(() => warmEmbeddings(), 600);
     return () => window.clearTimeout(t);
   }, []);
+
+  /* Focus hub at intro start. */
+  useEffect(() => {
+    if (introPhase !== 'focusHub') return;
+    flow.setCenter(0, 0, { zoom: 1.35, duration: 400 });
+  }, [introPhase, flow]);
+
+  /* Fit full graph when intro completes. */
+  useEffect(() => {
+    if (!introDone || introFitRef.current) return;
+    introFitRef.current = true;
+    const t = window.setTimeout(() => {
+      flow.fitView({ padding: 0.28, duration: 900 });
+    }, 200);
+    return () => window.clearTimeout(t);
+  }, [introDone, flow]);
 
   /* Highlight set is derived from whichever mode is active. */
   const highlight = useMemo(
@@ -102,8 +130,13 @@ function CanvasShell() {
   );
 
   const { rfNodes, rfEdges } = useMemo(
-    () => toReactFlow(graphNodes, graphEdges, highlight, state),
-    [highlight, state],
+    () =>
+      toReactFlow(graphNodes, graphEdges, highlight, state, {
+        revealedNodes,
+        revealedEdges,
+        isAnimating,
+      }),
+    [highlight, state, revealedNodes, revealedEdges, isAnimating],
   );
 
   const flyToNode = useCallback(
@@ -291,14 +324,24 @@ function CanvasShell() {
     : null;
 
   return (
-    <div className="canvas-root">
+    <div className={`canvas-root${isAnimating ? ' canvas-root--intro' : ''}`}>
       <HUD onHome={goHome} onRecruiter={openRecruiter} />
-      <SearchPanel actions={commandActions} />
-      <PersonaBar
-        activeId={state.personaId}
-        onSelect={togglePersona}
-      />
-      <CypherStrip query={cypher} />
+      {introDone && <SearchPanel actions={commandActions} />}
+      {introDone && (
+        <PersonaBar activeId={state.personaId} onSelect={togglePersona} />
+      )}
+      {introDone && <CypherStrip query={cypher} />}
+
+      {isAnimating && (
+        <>
+          <div className="intro-overlay" aria-hidden>
+            <div className="intro-overlay-label">Mapping knowledge graph…</div>
+          </div>
+          <button type="button" className="intro-skip" onClick={skipIntro}>
+            Skip intro
+          </button>
+        </>
+      )}
 
       <ReactFlow
         nodes={rfNodes}
@@ -309,9 +352,9 @@ function CanvasShell() {
         onInit={() => {
           if (initialFitRef.current) return;
           initialFitRef.current = true;
-          flow.fitView({ padding: 0.25 });
+          if (!isAnimating) flow.fitView({ padding: 0.25 });
         }}
-        fitView
+        fitView={!isAnimating && introDone}
         fitViewOptions={{ padding: 0.25, minZoom: 0.35, maxZoom: 1.4 }}
         minZoom={0.2}
         maxZoom={1.8}
@@ -337,9 +380,9 @@ function CanvasShell() {
         <Controls position="bottom-right" showInteractive={false} />
       </ReactFlow>
 
-      <GraphHealthChip />
+      {introDone && <GraphHealthChip />}
 
-      {activeStory && state.story && (
+      {introDone && activeStory && state.story && (
         <StoryPlayer
           story={activeStory}
           stepIndex={state.story.index}
@@ -349,7 +392,7 @@ function CanvasShell() {
           onStop={stopStory}
         />
       )}
-      {!state.story && (
+      {introDone && !state.story && (
         <StoryLauncher onStart={startStory} stories={stories} />
       )}
 
@@ -366,7 +409,15 @@ function CanvasShell() {
         onClose={closeRecruiter}
         onNodeSelect={focusNode as (id: string) => void}
       />
-      <AIAssistant onNodeSelect={focusNode as (id: string) => void} />
+      {introDone && (
+        <AIAssistant onNodeSelect={focusNode as (id: string) => void} />
+      )}
+
+      <OnboardingHint
+        visible={introDone && !state.recruiterOpen && !state.drawerId && !state.story}
+        onPlayStory={() => startStory('origin')}
+        onDismiss={() => undefined}
+      />
     </div>
   );
 }
@@ -441,30 +492,56 @@ function toReactFlow(
   edges: GraphEdge[],
   highlight: { nodes: Set<string>; edges: Set<string>; active: boolean },
   _state: CanvasState,
+  intro: {
+    revealedNodes: Set<string>;
+    revealedEdges: Set<string>;
+    isAnimating: boolean;
+  },
 ): { rfNodes: Node[]; rfEdges: Edge[] } {
   const active = highlight.active;
 
-  const rfNodes: Node[] = nodes.map((n) => ({
-    id: n.id,
-    type: n.kind,
-    position: n.position,
-    data: {
-      node: n,
-      dimmed: active && !highlight.nodes.has(n.id),
-      active: highlight.nodes.has(n.id),
-    },
-    selectable: true,
-    draggable: false,
-  }));
+  const rfNodes: Node[] = nodes.map((n) => {
+    const revealed = intro.revealedNodes.has(n.id);
+    return {
+      id: n.id,
+      type: n.kind,
+      position: n.position,
+      className: intro.isAnimating
+        ? revealed
+          ? 'intro-reveal'
+          : 'intro-pending'
+        : undefined,
+      data: {
+        node: n,
+        dimmed: active && !highlight.nodes.has(n.id),
+        active: highlight.nodes.has(n.id),
+      },
+      selectable: !intro.isAnimating || revealed,
+      draggable: false,
+    };
+  });
 
   const rfEdges: Edge[] = edges.map((e) => {
     const dim = active && !highlight.edges.has(e.id);
     const lit = active && highlight.edges.has(e.id);
+    const edgeRevealed =
+      intro.revealedEdges.has(e.id) &&
+      intro.revealedNodes.has(e.source) &&
+      intro.revealedNodes.has(e.target);
     return {
       id: e.id,
       source: e.source,
       target: e.target,
-      label: e.label,
+      label: intro.isAnimating || !edgeRevealed ? undefined : e.label,
+      className: intro.isAnimating
+        ? edgeRevealed
+          ? 'intro-reveal'
+          : 'intro-pending'
+        : lit
+          ? 'active'
+          : dim
+            ? 'dimmed'
+            : '',
       labelStyle: {
         fontSize: 10,
         fill: 'var(--text-tertiary)',
@@ -476,8 +553,7 @@ function toReactFlow(
       labelBgPadding: [4, 4],
       labelBgBorderRadius: 4,
       type: 'default',
-      animated: lit,
-      className: lit ? 'active' : dim ? 'dimmed' : '',
+      animated: lit || (intro.isAnimating && edgeRevealed),
       style: {
         stroke: lit ? 'var(--accent)' : 'var(--edge)',
         strokeWidth: lit ? 2 : 1.2,
