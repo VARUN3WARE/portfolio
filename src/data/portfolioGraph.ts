@@ -179,7 +179,7 @@ export const nodes: GraphNode[] = [
         { label: 'Email', href: 'mailto:varunr@iitbhilai.ac.in', icon: 'mail' },
         { label: 'GitHub', href: 'https://github.com/VARUN3WARE', icon: 'github' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/varun3ware/', icon: 'linkedin' },
-        { label: 'X', href: 'https://x.com/VarunrRao', icon: 'twitter' },
+        { label: 'X', href: 'https://x.com/varun_slops', icon: 'twitter' },
         {
           label: 'CV',
           href: 'https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu',
