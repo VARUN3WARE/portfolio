@@ -41,7 +41,11 @@ export interface SocialLink {
     | 'linkedin'
     | 'twitter'
     | 'file-text'
-    | 'globe';
+    | 'globe'
+    | 'bar-chart'
+    | 'code'
+    | 'brain'
+    | 'book-open';
 }
 
 export interface ExperienceDetail {
@@ -103,6 +107,8 @@ export interface HubDetail {
   kind: 'hub';
   name: string;
   role: string;
+  tagline?: string;
+  badges?: string[];
   socials: SocialLink[];
   avatar: string;
 }
@@ -173,9 +179,12 @@ export const nodes: GraphNode[] = [
     detail: {
       kind: 'hub',
       name: 'Varun Rao',
-      role: 'Absurd AIML Engineer · Co-founder of Human Slop',
+      role: 'AI/ML Engineer · Kaggle Expert',
+      tagline: 'Production systems that scale — LLMs, multi-agent AI, CUDA infra',
+      badges: ['IIT Bhilai DSAI', 'Co-founder @ Human Slop', 'PyPI · 54 repos'],
       avatar: '/images/varun.jpeg',
       socials: [
+        { label: 'Website', href: 'https://varunrao.is-a.dev', icon: 'globe' },
         { label: 'Email', href: 'mailto:varunr@iitbhilai.ac.in', icon: 'mail' },
         { label: 'GitHub', href: 'https://github.com/VARUN3WARE', icon: 'github' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/varun3ware/', icon: 'linkedin' },
@@ -185,6 +194,9 @@ export const nodes: GraphNode[] = [
           href: 'https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu',
           icon: 'file-text',
         },
+        { label: 'Kaggle', href: 'https://www.kaggle.com/varunraosfanlkan', icon: 'bar-chart' },
+        { label: 'Medium', href: 'https://medium.com/@varunrao.aiml', icon: 'book-open' },
+        { label: 'LeetCode', href: 'https://leetcode.com/u/varunrao00924/', icon: 'code' },
       ],
     },
   },
@@ -200,9 +212,9 @@ export const nodes: GraphNode[] = [
     detail: {
       kind: 'about',
       body: [
-        'AI ate my Creatine.',
-        'Started as a Data Scientist wrangling messy datasets and building predictive models, but soon realized my passion lives beyond data — in AI systems and deep learning. Shipped a wide range of work across hackathons, competitions, personal research, and an internship.',
-        'Got fed up building in AI all the time, hence co-founded Human Slop — an anti-AI social platform.',
+        'I build AI systems that work in production — not just in notebooks. Focus: LLMs, multi-agent architectures, GPU inference, and making ML actually deployable at scale.',
+        'B.Tech in Data Science & AI at IIT Bhilai. Kaggle Expert. Published pytorch-dml on PyPI. 70+ technical articles on Medium (800+ monthly readers).',
+        'Currently co-founding Human Slop — an anti-AI social platform with hardware-bound authentication and real-time typing forensics. Previously led an 8-person team shipping Hedgera, a multi-agent financial intelligence system.',
       ],
     },
   },
@@ -226,9 +238,9 @@ export const nodes: GraphNode[] = [
     id: 'featured',
     kind: 'section',
     label: 'Featured',
-    subtitle: 'It worked',
+    subtitle: 'Pinned on GitHub',
     position: SECTION.featured,
-    detail: { kind: 'section', intro: 'Projects I keep close at hand.' },
+    detail: { kind: 'section', intro: 'Production systems — shipped, published, and backtested.' },
   },
   {
     id: 'academic',
@@ -250,7 +262,7 @@ export const nodes: GraphNode[] = [
     id: 'skills',
     kind: 'section',
     label: 'Skills',
-    subtitle: '24 in total',
+    subtitle: '36+ skills',
     position: SECTION.skills,
     detail: { kind: 'section' },
   },
@@ -337,7 +349,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/humanslop',
       family: 'featured',
       summary:
-        'Privacy-first social platform that blocks 100% of AI-generated content using hardware-bound biometric authentication and real-time typing forensics.',
+        'Privacy-first social platform blocking 100% of AI-generated content. Hardware-bound auth, real-time keystroke forensics (WPM, burst patterns), dual-database architecture. Fully deployed on Web + Mobile. Co-founded · YC SUS India 2026.',
       tags: ['Python', 'React Native', 'Supabase', 'Biometrics'],
     },
   },
@@ -354,7 +366,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/dml-py',
       family: 'featured',
       summary:
-        'Production-ready PyTorch library for Deep Mutual Learning enabling collaborative neural network training where multiple networks learn from each other’s predictions.',
+        'Production-ready PyTorch library for Deep Mutual Learning — 7,000+ LOC, 34 modular components. AMP, DDP, ONNX export, full test coverage. 2–5% accuracy gains over independent training. Published on PyPI.',
       tags: ['PyTorch', 'DML', 'Deep Learning', 'PyPI'],
     },
   },
@@ -371,8 +383,26 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/Hedgera',
       family: 'featured',
       summary:
-        'Autonomous Financial Intelligence Platform. Multi-agent AI system for market analysis and portfolio management. Backtested returns: ~20%.',
+        'Autonomous Financial Intelligence Platform. 7-layer multi-agent system: temporal data fabric, hybrid ML/RL forecasting, agentic LLM debate, causal knowledge graph. ~20% backtested returns at 5–8% max drawdown. Led 8-person team.',
       tags: ['Pathway', 'PyTorch', 'LangChain', 'FinTech'],
+    },
+  },
+
+  {
+    id: 'proj-ayurveda-rag',
+    kind: 'project',
+    label: 'Ayurveda-RAG',
+    subtitle: 'Pinned · medical CRAG',
+    position: { x: SECTION.featured.x + 80, y: SECTION.featured.y - 40 },
+    tags: ['LangGraph', 'CRAG', 'GPT-4', 'FastAPI'],
+    detail: {
+      kind: 'project',
+      name: 'Kerala-Ayurveda-RAG',
+      url: 'https://github.com/VARUN3WARE/Kerala-Ayurveda-RAG',
+      family: 'featured',
+      summary:
+        'Production-grade multi-agent medical RAG with CRAG framework. Hybrid BM25 + vector retrieval, contraindication checks. <10% hallucination rate (RAGAS), 35% retrieval improvement. GPT-4 + LangGraph + Streamlit.',
+      tags: ['LangGraph', 'CRAG', 'GPT-4', 'FastAPI'],
     },
   },
 
@@ -475,7 +505,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/BPlusSQL',
       family: 'academic',
       summary:
-        'Disk-based B+ tree storage engine in C++17 with memory-mapped I/O for zero-copy page access and sorted key-value storage.',
+        'High-performance B+ tree storage engine in C++17: LRU buffer pool, WAL crash recovery, SQL layer, and TCP server. Pinned on GitHub.',
       tags: ['C++17', 'DBMS', 'Storage Engine'],
     },
   },
@@ -513,23 +543,6 @@ export const nodes: GraphNode[] = [
       summary:
         'Open-source evaluation engine for ML model health. Detects calibration mismatch, adversarial fragility, and blind spots.',
       tags: ['ML Evaluation', 'Reliability', 'Diagnostics'],
-    },
-  },
-  {
-    id: 'proj-ayurveda-rag',
-    kind: 'project',
-    label: 'Ayurveda-RAG',
-    subtitle: 'Multi-agent medical',
-    position: { x: SECTION.blades.x + 60, y: SECTION.blades.y + 220 },
-    tags: ['LangGraph', 'CRAG', 'FastAPI'],
-    detail: {
-      kind: 'project',
-      name: 'Kerala-Ayurveda-RAG',
-      url: 'https://github.com/VARUN3WARE/Kerala-Ayurveda-RAG',
-      family: 'blade',
-      summary:
-        'Production-grade multi-agent medical RAG system using GPT-4, LangGraph, and CRAG with hybrid BM25 + vector retrieval.',
-      tags: ['LangGraph', 'CRAG', 'FastAPI'],
     },
   },
   {
@@ -594,23 +607,68 @@ export const nodes: GraphNode[] = [
     tags: ['PyTorch', 'Python', 'C++', 'LangChain'],
     detail: {
       kind: 'skills',
-      totalCount: 24,
+      totalCount: 36,
       groups: [
         {
           name: 'AI / ML / DL',
           icon: 'brain-circuit',
-          items: ['PyTorch', 'Transformers', 'LangChain', 'RL', 'Vision-Language Models'],
+          items: [
+            'PyTorch',
+            'TensorFlow',
+            'Transformers',
+            'Hugging Face',
+            'XGBoost',
+            'OpenCV',
+            'RL',
+          ],
+        },
+        {
+          name: 'LLMs & Agentic AI',
+          icon: 'brain-circuit',
+          items: [
+            'GPT-4',
+            'LangChain',
+            'LangGraph',
+            'RAG',
+            'Fine-tuning',
+            'Multi-Agent Systems',
+          ],
         },
         {
           name: 'Languages',
           icon: 'code',
-          items: ['Python', 'JavaScript', 'C++', 'SQL'],
+          items: ['Python', 'C++', 'JavaScript', 'SQL', 'Bash'],
+        },
+        {
+          name: 'MLOps & Infra',
+          icon: 'code',
+          items: ['Docker', 'Kubernetes', 'MLflow', 'DVC', 'GCP', 'AWS', 'CI/CD'],
+        },
+        {
+          name: 'Data & Storage',
+          icon: 'code',
+          items: ['PostgreSQL', 'MongoDB', 'Neo4j', 'FAISS', 'ChromaDB', 'Pinecone'],
         },
       ],
     },
   },
 
   /* ---------- Achievements ---------- */
+  {
+    id: 'ach-kaggle-expert',
+    kind: 'achievement',
+    label: 'Kaggle Expert',
+    subtitle: 'Silver + Top 10%',
+    position: { x: SECTION.achievements.x + 80, y: SECTION.achievements.y - 360 },
+    tags: ['Kaggle', 'Expert'],
+    detail: {
+      kind: 'achievement',
+      icon: 'star',
+      title: 'Kaggle Expert',
+      summary:
+        'Expert-tier competitor. Silver medal (MITSUI, rank 36/1,711) and Top 10% (GQ Volatility, rank 34/386).',
+    },
+  },
   {
     id: 'ach-kaggle-silver',
     kind: 'achievement',
@@ -682,6 +740,35 @@ export const nodes: GraphNode[] = [
       summary: 'Led the team to improve baseline ML results by 23% under tight computational constraints.',
     },
   },
+  {
+    id: 'ach-medium',
+    kind: 'achievement',
+    label: 'Medium Writer',
+    subtitle: '70+ articles · 800+ readers',
+    position: { x: SECTION.achievements.x + 80, y: SECTION.achievements.y + 180 },
+    tags: ['Writing', 'ML'],
+    detail: {
+      kind: 'achievement',
+      icon: 'book-open',
+      title: 'Technical Writer — Medium',
+      summary:
+        '70+ ML/AI articles on production systems, LLMs, and competitions. 800+ monthly readers.',
+    },
+  },
+  {
+    id: 'ach-iitg',
+    kind: 'achievement',
+    label: 'IIT Guwahati Bootcamp',
+    subtitle: 'Top 10% · 500+ participants',
+    position: { x: SECTION.achievements.x + 80, y: SECTION.achievements.y + 400 },
+    tags: ['Bootcamp', 'Data Science'],
+    detail: {
+      kind: 'achievement',
+      icon: 'target',
+      title: 'Top 10% — IIT Guwahati Data Science Bootcamp',
+      summary: 'Ranked among top performers nationwide in an intensive data science program.',
+    },
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -730,9 +817,11 @@ export const edges: GraphEdge[] = [
   edge('featured', 'proj-humanslop', 'BELONGS_TO'),
   edge('featured', 'proj-dml', 'BELONGS_TO'),
   edge('featured', 'proj-hedgera', 'BELONGS_TO'),
+  edge('featured', 'proj-ayurveda-rag', 'BELONGS_TO'),
   edge('hub', 'proj-humanslop', 'FOUNDED', 'Co-founder'),
   edge('hub', 'proj-dml', 'BUILT'),
   edge('hub', 'proj-hedgera', 'BUILT'),
+  edge('hub', 'proj-ayurveda-rag', 'BUILT'),
   
   // Experience-to-Project mappings
   edge('exp-hedgera', 'proj-hedgera', 'RELATED_TO', 'shipped'),
@@ -756,7 +845,6 @@ export const edges: GraphEdge[] = [
   // Blades hierarchy
   edge('blades', 'proj-rapidadb', 'BELONGS_TO'),
   edge('blades', 'proj-evalforge', 'BELONGS_TO'),
-  edge('blades', 'proj-ayurveda-rag', 'BELONGS_TO'),
   edge('blades', 'proj-paged-attn', 'BELONGS_TO'),
   edge('blades', 'proj-pplm-watermark', 'BELONGS_TO'),
   edge('blades', 'proj-kaggle-students', 'BELONGS_TO'),
@@ -780,17 +868,24 @@ export const edges: GraphEdge[] = [
   edge('skills', 'skills-detail', 'BELONGS_TO'),
   edge('exp-hedgera', 'skills-detail', 'USED', 'PyTorch · LangChain · RL'),
   edge('proj-dml', 'skills-detail', 'USED', 'PyTorch'),
+  edge('proj-ayurveda-rag', 'skills-detail', 'USED', 'LangGraph · RAG'),
   edge('proj-rapidadb', 'skills-detail', 'USED', 'C++ · CUDA'),
   edge('proj-respect-gnn', 'skills-detail', 'USED', 'GNN · PyG'),
 
   // Achievements hierarchy
+  edge('achievements', 'ach-kaggle-expert', 'BELONGS_TO'),
   edge('achievements', 'ach-kaggle-silver', 'BELONGS_TO'),
   edge('achievements', 'ach-gq', 'BELONGS_TO'),
   edge('achievements', 'ach-yc', 'BELONGS_TO'),
   edge('achievements', 'ach-amazon', 'BELONGS_TO'),
   edge('achievements', 'ach-pixel-perfect', 'BELONGS_TO'),
+  edge('achievements', 'ach-medium', 'BELONGS_TO'),
+  edge('achievements', 'ach-iitg', 'BELONGS_TO'),
   
   // Achievement Contextual links
+  edge('ach-kaggle-expert', 'ach-kaggle-silver', 'RELATED_TO', 'MITSUI medal'),
+  edge('ach-kaggle-expert', 'ach-gq', 'RELATED_TO', 'GQ top 10%'),
+  edge('ach-medium', 'hub', 'RELATED_TO', 'writing'),
   edge('ach-yc', 'proj-humanslop', 'RELATED_TO', 'startup'),
   edge('ach-amazon', 'proj-respect-gnn', 'RELATED_TO', 'deep research'),
   edge('ach-kaggle-silver', 'proj-kaggle-students', 'RELATED_TO', 'ensemble tech'),

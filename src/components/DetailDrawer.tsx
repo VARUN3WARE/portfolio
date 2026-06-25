@@ -13,6 +13,9 @@ import {
   Twitter,
   X,
   Zap,
+  BarChart,
+  Code,
+  Brain,
   type LucideIcon,
 } from 'lucide-react';
 import { useEffect } from 'react';
@@ -226,7 +229,19 @@ function HubBody({ detail }: { detail: Extract<GraphNode['detail'], { kind: 'hub
   return (
     <>
       <p style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{detail.role}</p>
-      <p>
+      {detail.tagline && (
+        <p style={{ color: 'var(--text-secondary)', marginTop: 4 }}>{detail.tagline}</p>
+      )}
+      {detail.badges && detail.badges.length > 0 && (
+        <div className="drawer-tags" style={{ marginTop: 12 }}>
+          {detail.badges.map((b) => (
+            <span key={b} className="pill">
+              {b}
+            </span>
+          ))}
+        </div>
+      )}
+      <p style={{ marginTop: 12 }}>
         Browse the graph or use search (⌘K) to jump between work, education, projects,
         skills, and achievements. Each edge is a real relationship — what I worked on,
         what I used, what I shipped.
@@ -382,6 +397,10 @@ const socialIconMap: Record<SocialLink['icon'], LucideIcon> = {
   twitter: Twitter,
   'file-text': FileText,
   globe: ExternalLink,
+  'bar-chart': BarChart,
+  code: Code,
+  brain: Brain,
+  'book-open': BookOpen,
 };
 
 function socialIcon(name: SocialLink['icon']): LucideIcon {

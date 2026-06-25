@@ -25,8 +25,8 @@ export const deepDives: Record<string, DeepDive> = {
     stack: ['React Native', 'Python', 'Supabase', 'Biometrics', 'TypeForensics'],
     metrics: [
       { label: 'AI content blocked', value: '100%' },
+      { label: 'Deployed', value: 'Web + Mobile' },
       { label: 'YC SUS India', value: 'Bengaluru 2026' },
-      { label: 'Role', value: 'Co-founder' },
     ],
     whyItMatters:
       'Bet on a real future: the web needs verifiable humanness. Working on the demand side of the AI wave instead of the supply side.',
@@ -35,12 +35,12 @@ export const deepDives: Record<string, DeepDive> = {
     problem:
       'Most PyTorch users who want Deep Mutual Learning rewrite the training loop from scratch and tune it from research papers. Slow and error-prone.',
     approach:
-      'Generic DML trainer that wraps any nn.Module set. Pluggable distillation loss, automatic peer averaging, gradient sync hooks.',
-    stack: ['PyTorch', 'PyPI', 'CI/CD', 'Hypothesis'],
+      'Generic DML trainer wrapping any nn.Module set. Pluggable distillation loss, AMP, DDP, ONNX export, automatic peer averaging, gradient sync hooks.',
+    stack: ['PyTorch', 'PyPI', 'AMP', 'DDP', 'ONNX', 'Hypothesis'],
     metrics: [
-      { label: 'Networks', value: 'N≥2 peer ensemble' },
+      { label: 'Codebase', value: '7,000+ LOC' },
+      { label: 'Accuracy gain', value: '2–5% vs solo' },
       { label: 'Distribution', value: 'PyPI release' },
-      { label: 'Loss types', value: 'KL · JS · custom' },
     ],
     whyItMatters:
       'Turns a paper into a library. Lowers the floor for collaborative training research.',
@@ -108,9 +108,9 @@ export const deepDives: Record<string, DeepDive> = {
       'Multi-agent CRAG pipeline: retrieve → critique → retry → answer with citations. Hybrid BM25 + vector retrieval, GPT-4 + LangGraph orchestration.',
     stack: ['LangGraph', 'CRAG', 'FastAPI', 'GPT-4', 'BM25'],
     metrics: [
-      { label: 'Agents', value: 'Multi-agent debate' },
-      { label: 'Retrieval', value: 'BM25 + vector hybrid' },
-      { label: 'Surface', value: 'FastAPI service' },
+      { label: 'Hallucination rate', value: '<10% RAGAS' },
+      { label: 'Retrieval lift', value: '+35%' },
+      { label: 'Agents', value: '6-agent CRAG' },
     ],
     whyItMatters:
       'A useful template for any high-stakes RAG: legal, medical, scientific. CRAG-style self-critique reduces hallucinations measurably.',

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://varunrao.dev/sitemap.xml
+Sitemap: https://varunrao.is-a.dev/sitemap.xml

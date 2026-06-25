@@ -1,5 +1,15 @@
 import { Handle, Position, type NodeProps } from '@xyflow/react';
-import { FileText, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import {
+  FileText,
+  Github,
+  Linkedin,
+  Mail,
+  Twitter,
+  BarChart,
+  Code,
+  Globe,
+  BookOpen,
+} from 'lucide-react';
 import type { GraphNode, HubDetail, SocialLink } from '../../data/portfolioGraph';
 import { classNames } from './classNames';
 
@@ -15,7 +25,11 @@ const iconFor: Record<SocialLink['icon'], typeof Mail> = {
   linkedin: Linkedin,
   twitter: Twitter,
   'file-text': FileText,
-  globe: Mail,
+  globe: Globe,
+  'bar-chart': BarChart,
+  code: Code,
+  brain: Code,
+  'book-open': BookOpen,
 };
 
 export function HubNode({ data, selected }: NodeProps) {
@@ -30,8 +44,18 @@ export function HubNode({ data, selected }: NodeProps) {
         <div>
           <div className="node-hub-name">{detail.name}</div>
           <div className="node-hub-role">{detail.role}</div>
+          {detail.tagline && <div className="node-hub-tagline">{detail.tagline}</div>}
         </div>
       </div>
+      {detail.badges && detail.badges.length > 0 && (
+        <div className="node-hub-badges">
+          {detail.badges.map((badge) => (
+            <span key={badge} className="node-hub-badge">
+              {badge}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="node-hub-socials" onClick={(e) => e.stopPropagation()}>
         {detail.socials.map((s) => {
           const Icon = iconFor[s.icon];
