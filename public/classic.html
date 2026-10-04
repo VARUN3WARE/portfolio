@@ -28,10 +28,11 @@
         z-index: 100;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 8px 14px;
-        background: #111;
-        color: #fff;
+        gap: 8px;
+        padding: 8px 14px 8px 10px;
+        background: #09090b;
+        color: #f4f4f5;
+        border: 1px solid rgba(245, 165, 36, 0.35);
         border-radius: 999px;
         font:
           500 12px/1 &quot;Inter&quot;,
@@ -41,7 +42,17 @@
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
       "
     >
-      ← Back to graph
+      <span
+        aria-hidden="true"
+        style="
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: radial-gradient(circle at 35% 30%, #ffe7a8, #f5a524 45%, #c46a00);
+          box-shadow: 0 0 8px rgba(245, 165, 36, 0.55);
+        "
+      ></span>
+      Back to the Dragon Radar
     </a>
 
     <div class="container">
@@ -471,8 +482,8 @@
                 ></a>
               </div>
               <p class="project-desc">
-                Disk-based B+ tree storage engine in C++17 with memory-mapped
-                I/O for zero-copy page access and sorted key-value storage.
+                Disk-backed B+ tree storage engine in C++17 with an LRU buffer
+                pool and write-ahead logging for crash recovery.
               </p>
               <div class="project-tags">
                 <span class="tag">C++17</span>
@@ -560,7 +571,7 @@
             <div class="project-card">
               <div class="project-header">
                 <a
-                  href="https://github.com/VARUN3WARE/paged-Attention"
+                  href="https://github.com/VARUN3WARE/Paged-Attention"
                   target="_blank"
                   class="project-name"
                   >PagedAttention-Transformer
@@ -619,6 +630,127 @@
                 <span class="tag">MLflow</span>
               </div>
             </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <a
+                  href="https://github.com/VARUN3WARE/ArthJAX"
+                  target="_blank"
+                  class="project-name"
+                  >ArthJAX <i data-lucide="github" style="width: 14px"></i
+                ></a>
+              </div>
+              <p class="project-desc">
+                GPU-accelerated agent-based macroeconomic simulator in JAX:
+                households, banks, contagion, and shocks.
+              </p>
+              <div class="project-tags">
+                <span class="tag">JAX</span>
+                <span class="tag">Agent-Based Modeling</span>
+                <span class="tag">GPU</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Open Source -->
+        <section id="open-source" class="projects-section" style="margin-top: 3rem">
+          <h2
+            style="
+              font-size: 1.125rem;
+              margin-bottom: 0.5rem;
+              color: var(--text-primary);
+            "
+          >
+            Open Source · 19 merged upstream PRs
+          </h2>
+          <p class="muted" style="margin-bottom: 1.5rem">
+            Reviewed and merged by other maintainers.
+          </p>
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-header">
+                <a
+                  href="https://github.com/Hebbian-Robotics/hflow/pulls?q=is%3Apr+author%3AVARUN3WARE+is%3Amerged"
+                  target="_blank"
+                  class="project-name"
+                  >HFlow · 12 merged
+                  <i data-lucide="git-pull-request" style="width: 14px"></i
+                ></a>
+              </div>
+              <p class="project-desc">
+                Robotics data SDK by Hebbian Robotics. sha256 snapshot receipts,
+                <code>hflow verify</code>, resumable LeRobot imports into
+                S3/GCS/Azure, and hardening against hostile paths and SQL.
+              </p>
+              <div class="project-tags">
+                <span class="tag">DuckDB</span>
+                <span class="tag">Parquet</span>
+                <span class="tag">Data Integrity</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <a
+                  href="https://github.com/ArgusLabs-ai/ARGUS/pulls?q=is%3Apr+author%3AVARUN3WARE+is%3Amerged"
+                  target="_blank"
+                  class="project-name"
+                  >ARGUS · 4 merged
+                  <i data-lucide="git-pull-request" style="width: 14px"></i
+                ></a>
+              </div>
+              <p class="project-desc">
+                Silent-failure detection for AI agents. pytest plugin now
+                watches every LangGraph entry point, plus a strict CI mode.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Agents</span>
+                <span class="tag">LangGraph</span>
+                <span class="tag">pytest</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <a
+                  href="https://github.com/NVIDIA/nvcf/pull/1836"
+                  target="_blank"
+                  class="project-name"
+                  >NVIDIA nvcf · 1 merged
+                  <i data-lucide="git-pull-request" style="width: 14px"></i
+                ></a>
+              </div>
+              <p class="project-desc">
+                Build-only multi-arch (amd64/arm64) Docker Buildx CI job for the
+                OpenBao migrations image.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Docker</span>
+                <span class="tag">CI</span>
+                <span class="tag">GPU Inference</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <a
+                  href="https://github.com/kornia/kornia/pulls?q=is%3Apr+author%3AVARUN3WARE"
+                  target="_blank"
+                  class="project-name"
+                  >kornia · 2 merged · shap · 2 open
+                  <i data-lucide="git-pull-request" style="width: 14px"></i
+                ></a>
+              </div>
+              <p class="project-desc">
+                SEO meta descriptions across 46 kornia doc modules; shap fixes
+                for waterfall label cutoff and LinearExplainer link.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">SHAP</span>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -675,6 +807,7 @@
             </h3>
             <div class="skill-tags">
               <div class="skill-pill">PyTorch</div>
+              <div class="skill-pill">JAX</div>
               <div class="skill-pill">Transformers</div>
               <div class="skill-pill">Reinforcement Learning</div>
               <div class="skill-pill">Vision-Language Models</div>
@@ -698,6 +831,7 @@
             </h3>
             <div class="skill-tags">
               <div class="skill-pill">LangChain</div>
+              <div class="skill-pill">LangGraph</div>
               <div class="skill-pill">Multi-Agent Systems</div>
               <div class="skill-pill">Vector Databases</div>
               <div class="skill-pill">Inference Optimization</div>
@@ -744,8 +878,11 @@
             </h3>
             <div class="skill-tags">
               <div class="skill-pill">Python</div>
-              <div class="skill-pill">JavaScript</div>
+              <div class="skill-pill">Rust</div>
+              <div class="skill-pill">TypeScript</div>
               <div class="skill-pill">SQL</div>
+              <div class="skill-pill">DuckDB</div>
+              <div class="skill-pill">Docker</div>
             </div>
           </div>
         </div>
@@ -785,12 +922,14 @@
           </div>
 
           <div class="achievement-card">
-            <div class="achievement-icon"><i data-lucide="rocket"></i></div>
+            <div class="achievement-icon"><i data-lucide="git-pull-request"></i></div>
             <div>
-              <div class="achievement-title">YC SUS India Bengaluru 2026</div>
+              <div class="achievement-title">
+                19 Merged Upstream PRs — HFlow, ARGUS, NVIDIA, kornia
+              </div>
               <p class="achievement-desc">
-                Co-founding Human Slop, building anti-AI social platform with
-                typing forensics.
+                12 in HFlow (robotics data integrity), 4 in ARGUS (agent
+                reliability), 1 in NVIDIA nvcf, 2 in kornia.
               </p>
             </div>
           </div>
@@ -873,7 +1012,7 @@
         <p class="muted" style="font-size: 0.85rem">
           © 2026 Varun Rao ·
           <a href="/" style="color: inherit; text-decoration: underline"
-            >Interactive graph view</a
+            >Dragon Radar view</a
           >
         </p>
       </footer>

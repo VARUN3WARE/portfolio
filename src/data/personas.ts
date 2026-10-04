@@ -9,7 +9,8 @@ export type PersonaIcon =
   | 'message-square-code'
   | 'microscope'
   | 'rocket'
-  | 'line-chart';
+  | 'line-chart'
+  | 'git-pull-request';
 
 export interface Persona {
   id: string;
@@ -40,8 +41,13 @@ export const personas: Persona[] = [
       'Transformer',
       'Storage Engine',
       'DBMS',
+      'Data Integrity',
+      'Docker',
+      'GPU',
+      'GPU Inference',
+      'JAX',
     ],
-    pinned: ['proj-rapidadb', 'proj-paged-attn', 'proj-bplussql'],
+    pinned: ['proj-rapidadb', 'proj-paged-attn', 'proj-bplussql', 'oss-hflow', 'oss-nvcf'],
     cypher:
       "MATCH (p:Project) WHERE ANY(t IN p.tags WHERE t IN ['CUDA','C++','Vector DB','Inference']) RETURN p",
   },
@@ -64,8 +70,11 @@ export const personas: Persona[] = [
       'VLM',
       'Inference Control',
       'Watermarking',
+      'Agents',
+      'Evals',
     ],
     pinned: [
+      'oss-argus',
       'proj-ayurveda-rag',
       'proj-hedgera',
       'proj-paged-attn',
@@ -106,16 +115,15 @@ export const personas: Persona[] = [
     label: 'Startup',
     icon: 'rocket',
     blurb:
-      'Founder energy. Shipped Human Slop, pitched to YC SUS India, led production teams.',
+      'Founder energy. Co-founded and shipped Human Slop on web and mobile, led an 8-person production team.',
     tags: [
       'React Native',
       'Supabase',
       'Biometrics',
-      'YC',
       'Startup',
       'FinTech',
     ],
-    pinned: ['proj-humanslop', 'ach-yc', 'exp-hedgera', 'proj-hedgera'],
+    pinned: ['proj-humanslop', 'exp-hedgera', 'proj-hedgera'],
     cypher:
       "MATCH (v:Person)-[:FOUNDED|:BUILT]->(p) RETURN p, v",
   },
@@ -138,11 +146,21 @@ export const personas: Persona[] = [
     pinned: [
       'ach-kaggle-silver',
       'ach-gq',
-      'proj-kaggle-students',
       'proj-wifi',
     ],
     cypher:
       "MATCH (n) WHERE ANY(t IN n.tags WHERE t IN ['Kaggle','SHAP','Forecasting']) RETURN n",
+  },
+  {
+    id: 'open-source',
+    label: 'Open Source',
+    icon: 'git-pull-request',
+    blurb:
+      '19 merged upstream PRs. HFlow, ARGUS, NVIDIA nvcf, kornia — reviewed and merged by other maintainers.',
+    tags: ['Open Source'],
+    pinned: ['openSource', 'oss-hflow', 'oss-argus', 'oss-nvcf', 'oss-kornia', 'oss-shap'],
+    cypher:
+      "MATCH (v:Person)-[r:CONTRIBUTED_TO]->(repo) WHERE r.status = 'merged' RETURN repo, count(r)",
   },
 ];
 

@@ -25,7 +25,7 @@ export const deepDives: Record<string, DeepDive> = {
     stack: ['React Native', 'Python', 'Supabase', 'Biometrics', 'TypeForensics'],
     metrics: [
       { label: 'AI content blocked', value: '100%' },
-      { label: 'YC SUS India', value: 'Bengaluru 2026' },
+      { label: 'Platforms', value: 'Web + mobile' },
       { label: 'Role', value: 'Co-founder' },
     ],
     whyItMatters:
@@ -114,6 +114,34 @@ export const deepDives: Record<string, DeepDive> = {
     ],
     whyItMatters:
       'A useful template for any high-stakes RAG: legal, medical, scientific. CRAG-style self-critique reduces hallucinations measurably.',
+  },
+  'oss-hflow': {
+    problem:
+      'Robotics teams train on datasets that move between machines and buckets. If a snapshot or LeRobot import arrives damaged, nothing says so until a model trains on bad data.',
+    approach:
+      'Made delivery provable: sha256 receipts per table and asset, a `hflow verify` family with a shared report contract and exit codes (0 clean, 1 damaged, 2 unreadable, 3 unverifiable), bucket-native imports that resume at episode boundaries, and refusal of hostile paths and non-SELECT SQL.',
+    stack: ['Python', 'DuckDB', 'Parquet', 'LeRobot', 'S3 / GCS / Azure'],
+    metrics: [
+      { label: 'Merged PRs', value: '12' },
+      { label: 'Issues closed', value: '10+' },
+      { label: 'Repo stars', value: '280+' },
+    ],
+    whyItMatters:
+      'Data integrity is the unglamorous floor under every robotics model. Each PR turns a silent corruption path into a loud, specific exit code.',
+  },
+  'oss-argus': {
+    problem:
+      'AI agents fail silently: a tool returns a 429, an async path is never observed, and CI stays green while users see garbage.',
+    approach:
+      'Extended the `pytest --argus` plugin to every LangGraph entry point (ainvoke, stream, astream, batch, abatch), added `--strict warn_as_fail` for CI, made the repo dogfood its own plugin, and fixed a run-pointer race that graded the wrong run.',
+    stack: ['Python', 'pytest', 'LangGraph', 'GitHub Actions'],
+    metrics: [
+      { label: 'Merged PRs', value: '4' },
+      { label: 'Issues closed', value: '4' },
+      { label: 'Focus', value: 'Agent reliability' },
+    ],
+    whyItMatters:
+      'Same instinct as EvalForge, applied to agents: if it can fail quietly, make it fail loudly in CI first.',
   },
 };
 

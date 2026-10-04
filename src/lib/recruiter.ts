@@ -48,15 +48,22 @@ export interface HeadlineStat {
 
 /** Coarse stats for the recruiter panel header. */
 export function headlineStats(): HeadlineStat[] {
-  const projects = allNodes.filter((n) => n.kind === 'project').length;
+  let projects = 0;
+  let mergedPrs = 0;
+  for (const n of allNodes) {
+    if (n.detail.kind !== 'project') continue;
+    if (n.detail.family === 'oss') {
+      mergedPrs += (n.detail.contributions ?? []).filter((c) => c.status === 'merged').length;
+    } else {
+      projects += 1;
+    }
+  }
   const experiences = allNodes.filter((n) => n.kind === 'experience').length;
   const achievements = allNodes.filter((n) => n.kind === 'achievement').length;
-  const tags = new Set<string>();
-  for (const n of allNodes) for (const t of n.tags ?? []) tags.add(t);
   return [
     { label: 'Projects', value: String(projects) },
+    { label: 'Merged PRs', value: String(mergedPrs) },
     { label: 'Roles', value: String(experiences) },
     { label: 'Awards', value: String(achievements) },
-    { label: 'Tags', value: String(tags.size) },
   ];
 }

@@ -25,6 +25,7 @@ export type EdgeKind =
   | 'FOUNDED'
   | 'USED'
   | 'AWARDED'
+  | 'CONTRIBUTED_TO'
   | 'RELATED_TO';
 
 export interface Position {
@@ -65,13 +66,22 @@ export interface EducationDetail {
   summary: string;
 }
 
+export interface Contribution {
+  ref: string;
+  url: string;
+  status: 'merged' | 'open';
+  summary: string;
+}
+
 export interface ProjectDetail {
   kind: 'project';
   name: string;
   url?: string;
   summary: string;
   tags: string[];
-  family: 'featured' | 'academic' | 'blade';
+  family: 'featured' | 'academic' | 'blade' | 'oss';
+  /** Upstream pull requests, for `oss` projects. */
+  contributions?: Contribution[];
 }
 
 export interface AchievementDetail {
@@ -110,6 +120,7 @@ export interface HubDetail {
 export interface SectionDetail {
   kind: 'section';
   intro?: string;
+  images?: { src: string; alt: string }[];
 }
 
 export type NodeDetail =
@@ -157,6 +168,7 @@ const SECTION = {
   featured: { x: -520, y: 280 },
   academic: { x: -880, y: 40 },
   blades: { x: 80, y: 560 },
+  openSource: { x: 0, y: -600 },
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -173,13 +185,14 @@ export const nodes: GraphNode[] = [
     detail: {
       kind: 'hub',
       name: 'Varun Rao',
-      role: 'Absurd AIML Engineer · Co-founder of Human Slop',
+      role: 'Absurd AIML Engineer · Co-founder of Human Slop · 19 merged upstream PRs',
       avatar: '/images/varun.jpeg',
       socials: [
         { label: 'Email', href: 'mailto:varunr@iitbhilai.ac.in', icon: 'mail' },
         { label: 'GitHub', href: 'https://github.com/VARUN3WARE', icon: 'github' },
         { label: 'LinkedIn', href: 'https://linkedin.com/in/varun3ware/', icon: 'linkedin' },
         { label: 'X', href: 'https://x.com/varun_slops', icon: 'twitter' },
+        { label: 'Medium', href: 'https://medium.com/@varunrao.aiml', icon: 'globe' },
         {
           label: 'CV',
           href: 'https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu',
@@ -201,8 +214,9 @@ export const nodes: GraphNode[] = [
       kind: 'about',
       body: [
         'AI ate my Creatine.',
-        'Started as a Data Scientist wrangling messy datasets and building predictive models, but soon realized my passion lives beyond data — in AI systems and deep learning. Shipped a wide range of work across hackathons, competitions, personal research, and an internship.',
-        'Got fed up building in AI all the time, hence co-founded Human Slop — an anti-AI social platform.',
+        'Started as a Data Scientist wrangling messy datasets and building predictive models, but soon realized my passion lives beyond data, in AI systems and deep learning. Shipped a wide range of work across hackathons, competitions, personal research, and an internship.',
+        'Got fed up building in AI all the time, hence co-founded Human Slop, an anti-AI social platform.',
+        'These days I also ship upstream: 19 merged PRs across HFlow (robotics data integrity), ARGUS (silent-failure detection for agents), NVIDIA nvcf, and kornia. I write about all of it in 70+ articles on Medium.',
       ],
     },
   },
@@ -250,7 +264,7 @@ export const nodes: GraphNode[] = [
     id: 'skills',
     kind: 'section',
     label: 'Skills',
-    subtitle: '24 in total',
+    subtitle: '34 in total',
     position: SECTION.skills,
     detail: { kind: 'section' },
   },
@@ -262,8 +276,47 @@ export const nodes: GraphNode[] = [
     position: SECTION.achievements,
     detail: { kind: 'section' },
   },
+  {
+    id: 'openSource',
+    kind: 'section',
+    label: 'Open Source',
+    subtitle: '19 merged upstream',
+    position: SECTION.openSource,
+    tags: ['Open Source'],
+    detail: {
+      kind: 'section',
+      intro:
+        'Upstream work in other people’s codebases: 12 merged in HFlow, 4 in ARGUS, 2 in kornia, 1 in NVIDIA nvcf, and 2 open in shap. Most of it is about making tools fail loudly and correctly instead of silently.',
+      images: [
+        { src: '/images/oss-terminal.svg', alt: 'git log of merged upstream PRs' },
+        {
+          src: 'https://raw.githubusercontent.com/VARUN3WARE/VARUN3WARE/output/dbz-clash.svg',
+          alt: 'Contribution graph: Galick Gun vs Kamehameha',
+        },
+      ],
+    },
+  },
 
   /* ---------- Work ---------- */
+  {
+    id: 'exp-shipd',
+    kind: 'experience',
+    label: 'Contributor — Shipd',
+    subtitle: 'Shipd by Datacurve AI · Remote',
+    position: { x: SECTION.work.x + 200, y: SECTION.work.y - 260 },
+    tags: ['AI Training Data', 'SWE', 'ML', 'LLM'],
+    detail: {
+      kind: 'experience',
+      role: 'Contributor',
+      org: 'Shipd by Datacurve AI',
+      location: 'Remote',
+      start: 'Now',
+      end: 'Now',
+      logo: '/images/shipd_logo.png',
+      summary:
+        'Contributing to Shipd, the platform behind frontier AI training data. Solving hard software engineering and ML challenges that stump agents and humans alike, producing the data that pushes LLMs forward.',
+    },
+  },
   {
     id: 'exp-hedgera',
     kind: 'experience',
@@ -475,8 +528,8 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/BPlusSQL',
       family: 'academic',
       summary:
-        'Disk-based B+ tree storage engine in C++17 with memory-mapped I/O for zero-copy page access and sorted key-value storage.',
-      tags: ['C++17', 'DBMS', 'Storage Engine'],
+        'Disk-backed B+ tree storage engine in C++17 with an LRU buffer pool and write-ahead logging for crash recovery.',
+      tags: ['C++17', 'DBMS', 'Storage Engine', 'WAL'],
     },
   },
 
@@ -542,10 +595,10 @@ export const nodes: GraphNode[] = [
     detail: {
       kind: 'project',
       name: 'PagedAttention-Transformer',
-      url: 'https://github.com/VARUN3WARE/paged-Attention',
+      url: 'https://github.com/VARUN3WARE/Paged-Attention',
       family: 'blade',
       summary:
-        'Memory-efficient KV-cache implementation reducing usage by 60–80% for production LLM deployment.',
+        'PagedAttention from the vLLM paper: the KV cache is managed in fixed-size pages like virtual memory, cutting memory waste by 60–80% for LLM serving.',
       tags: ['CUDA', 'Transformer', 'Inference'],
     },
   },
@@ -583,6 +636,139 @@ export const nodes: GraphNode[] = [
       tags: ['SHAP', 'Ensemble', 'MLflow'],
     },
   },
+  {
+    id: 'proj-arthjax',
+    kind: 'project',
+    label: 'ArthJAX',
+    subtitle: 'JAX macro simulator',
+    position: { x: SECTION.blades.x - 60, y: SECTION.blades.y + 380 },
+    tags: ['JAX', 'Agent-Based Modeling', 'Economics', 'GPU'],
+    detail: {
+      kind: 'project',
+      name: 'ArthJAX',
+      url: 'https://github.com/VARUN3WARE/ArthJAX',
+      family: 'blade',
+      summary:
+        'GPU-accelerated agent-based macroeconomic simulator in JAX: households, banks, contagion, and shocks, vectorized with vmap and compiled with jit.',
+      tags: ['JAX', 'Agent-Based Modeling', 'Economics', 'GPU'],
+    },
+  },
+
+  /* ---------- Open source ---------- */
+  {
+    id: 'oss-hflow',
+    kind: 'project',
+    label: 'HFlow',
+    subtitle: 'Hebbian Robotics · 12 merged',
+    position: { x: SECTION.openSource.x - 300, y: SECTION.openSource.y - 220 },
+    tags: ['Robotics Data', 'DuckDB', 'Parquet', 'LeRobot', 'Data Integrity'],
+    detail: {
+      kind: 'project',
+      name: 'HFlow',
+      url: 'https://github.com/Hebbian-Robotics/hflow/pulls?q=is%3Apr+author%3AVARUN3WARE+is%3Amerged',
+      family: 'oss',
+      summary:
+        'SDK for robotics teams to verify the data they train on. My work centers on delivery integrity: sha256 snapshot receipts, `hflow verify`, LeRobot imports straight into S3/GCS/Azure that resume after failure, and refusing malformed or hostile input with a clear exit code instead of a traceback.',
+      tags: ['Robotics Data', 'DuckDB', 'Parquet', 'LeRobot', 'Data Integrity'],
+      contributions: [
+        { ref: '#672', url: 'https://github.com/Hebbian-Robotics/hflow/pull/672', status: 'merged', summary: 'Treat a non-object `integrity` key as a malformed receipt (exit 2), not a legacy snapshot.' },
+        { ref: '#639', url: 'https://github.com/Hebbian-Robotics/hflow/pull/639', status: 'merged', summary: '`curate` / `stale` report DuckDB binder and catalog errors cleanly instead of crashing.' },
+        { ref: '#576', url: 'https://github.com/Hebbian-Robotics/hflow/pull/576', status: 'merged', summary: 'Refuse null or wrong-type integrity containers instead of an AttributeError traceback.' },
+        { ref: '#564', url: 'https://github.com/Hebbian-Robotics/hflow/pull/564', status: 'merged', summary: 'Single-SELECT SQL gate on `curate --dry-run`, matching the hosted server.' },
+        { ref: '#554', url: 'https://github.com/Hebbian-Robotics/hflow/pull/554', status: 'merged', summary: 'Remove stale "verifier not shipped" wording from snapshot docs.' },
+        { ref: '#538', url: 'https://github.com/Hebbian-Robotics/hflow/pull/538', status: 'merged', summary: 'Catalog UI rebinds tables when their Parquet lands mid-session.' },
+        { ref: '#515', url: 'https://github.com/Hebbian-Robotics/hflow/pull/515', status: 'merged', summary: 'Refuse absolute, `..`, and drive-letter receipt paths before reading them.' },
+        { ref: '#454', url: 'https://github.com/Hebbian-Robotics/hflow/pull/454', status: 'merged', summary: '`hflow verify lerobot-import` plus a shared VerificationReport contract.' },
+        { ref: '#401', url: 'https://github.com/Hebbian-Robotics/hflow/pull/401', status: 'merged', summary: 'Per-table and per-asset sha256 receipts plus a content_id in format.json.' },
+        { ref: '#390', url: 'https://github.com/Hebbian-Robotics/hflow/pull/390', status: 'merged', summary: 'Multi-episode LeRobot imports resume at episode boundaries.' },
+        { ref: '#377', url: 'https://github.com/Hebbian-Robotics/hflow/pull/377', status: 'merged', summary: '`hflow import lerobot` publishes directly into s3://, gs://, az:// roots.' },
+        { ref: '#366', url: 'https://github.com/Hebbian-Robotics/hflow/pull/366', status: 'merged', summary: '`hflow catalog ui` opens bucket-backed catalogs through a local mirror.' },
+      ],
+    },
+  },
+  {
+    id: 'oss-argus',
+    kind: 'project',
+    label: 'ARGUS',
+    subtitle: 'ArgusLabs · 4 merged',
+    position: { x: SECTION.openSource.x, y: SECTION.openSource.y - 260 },
+    tags: ['Agents', 'LangGraph', 'pytest', 'Evals', 'CI'],
+    detail: {
+      kind: 'project',
+      name: 'ARGUS',
+      url: 'https://github.com/ArgusLabs-ai/ARGUS/pulls?q=is%3Apr+author%3AVARUN3WARE+is%3Amerged',
+      family: 'oss',
+      summary:
+        'Catches silent failures in AI agents before users do. I widened the pytest plugin to every LangGraph entry point, added a strict CI mode, made the project dogfood its own plugin, and fixed a run-pointer race that graded the wrong run.',
+      tags: ['Agents', 'LangGraph', 'pytest', 'Evals', 'CI'],
+      contributions: [
+        { ref: '#118', url: 'https://github.com/ArgusLabs-ai/ARGUS/pull/118', status: 'merged', summary: 'Stop writing ARGUS_RUN_ID on every run so `argus check` grades the right one.' },
+        { ref: '#77', url: 'https://github.com/ArgusLabs-ai/ARGUS/pull/77', status: 'merged', summary: '`argus check --strict warn_as_fail` so CI can fail on HTTP 429-style warnings.' },
+        { ref: '#68', url: 'https://github.com/ArgusLabs-ai/ARGUS/pull/68', status: 'merged', summary: 'CI runs its own `pytest --argus` plugin on every PR.' },
+        { ref: '#66', url: 'https://github.com/ArgusLabs-ai/ARGUS/pull/66', status: 'merged', summary: 'Watch ainvoke, stream, astream, batch, and abatch, not just invoke.' },
+      ],
+    },
+  },
+  {
+    id: 'oss-nvcf',
+    kind: 'project',
+    label: 'NVIDIA nvcf',
+    subtitle: 'NVIDIA · 1 merged',
+    position: { x: SECTION.openSource.x + 300, y: SECTION.openSource.y - 220 },
+    tags: ['Docker', 'Buildx', 'CI', 'GPU Inference'],
+    detail: {
+      kind: 'project',
+      name: 'NVIDIA nvcf',
+      url: 'https://github.com/NVIDIA/nvcf/pull/1836',
+      family: 'oss',
+      summary:
+        'Platform for deploying and routing GPU-accelerated inference, streaming, and batch workloads. Added a build-only multi-arch CI job for the OpenBao migrations image.',
+      tags: ['Docker', 'Buildx', 'CI', 'GPU Inference'],
+      contributions: [
+        { ref: '#1836', url: 'https://github.com/NVIDIA/nvcf/pull/1836', status: 'merged', summary: 'Build-only Docker Buildx job validating linux/amd64 and linux/arm64 without publishing.' },
+      ],
+    },
+  },
+  {
+    id: 'oss-kornia',
+    kind: 'project',
+    label: 'kornia',
+    subtitle: 'Differentiable CV · 2 merged',
+    position: { x: SECTION.openSource.x - 580, y: SECTION.openSource.y - 60 },
+    tags: ['Computer Vision', 'PyTorch', 'Docs'],
+    detail: {
+      kind: 'project',
+      name: 'kornia',
+      url: 'https://github.com/kornia/kornia/pulls?q=is%3Apr+author%3AVARUN3WARE',
+      family: 'oss',
+      summary: 'Differentiable computer vision library for PyTorch. Documentation work across the API reference.',
+      tags: ['Computer Vision', 'PyTorch', 'Docs'],
+      contributions: [
+        { ref: '#3129', url: 'https://github.com/kornia/kornia/pull/3129', status: 'merged', summary: 'SEO meta descriptions across 46 documentation modules.' },
+        { ref: '#3131', url: 'https://github.com/kornia/kornia/pull/3131', status: 'merged', summary: 'Docstring for `_detach_tensor_to_cpu`.' },
+      ],
+    },
+  },
+  {
+    id: 'oss-shap',
+    kind: 'project',
+    label: 'shap',
+    subtitle: 'Explainability · 2 open',
+    position: { x: SECTION.openSource.x + 580, y: SECTION.openSource.y - 60 },
+    tags: ['SHAP', 'Explainability', 'Matplotlib'],
+    detail: {
+      kind: 'project',
+      name: 'shap',
+      url: 'https://github.com/shap/shap/pulls?q=is%3Apr+author%3AVARUN3WARE',
+      family: 'oss',
+      summary: 'Game-theoretic model explanations. Two bug fixes in review.',
+      tags: ['SHAP', 'Explainability', 'Matplotlib'],
+      contributions: [
+        { ref: '#4249', url: 'https://github.com/shap/shap/pull/4249', status: 'open', summary: 'Waterfall plot labels no longer cut off in saved figures.' },
+        { ref: '#4252', url: 'https://github.com/shap/shap/pull/4252', status: 'open', summary: 'LinearExplainer respects the `link` parameter for classifiers.' },
+      ],
+    },
+  },
 
   /* ---------- Skills (single rich node + tag map) ---------- */
   {
@@ -591,20 +777,35 @@ export const nodes: GraphNode[] = [
     label: 'Skills overview',
     subtitle: 'AI · Languages',
     position: { x: SECTION.skills.x + 240, y: SECTION.skills.y + 140 },
-    tags: ['PyTorch', 'Python', 'C++', 'LangChain'],
+    tags: ['PyTorch', 'JAX', 'Python', 'C++', 'LangGraph', 'DuckDB', 'CUDA'],
     detail: {
       kind: 'skills',
-      totalCount: 24,
+      totalCount: 34,
       groups: [
         {
           name: 'AI / ML / DL',
           icon: 'brain-circuit',
-          items: ['PyTorch', 'Transformers', 'LangChain', 'RL', 'Vision-Language Models'],
+          items: ['PyTorch', 'JAX', 'Transformers', 'scikit-learn', 'XGBoost', 'RL', 'Vision-Language Models'],
+        },
+        {
+          name: 'Agents',
+          icon: 'brain-circuit',
+          items: ['LangChain', 'LangGraph', 'RAG', 'Multi-Agent Systems', 'Evals'],
         },
         {
           name: 'Languages',
           icon: 'code',
-          items: ['Python', 'JavaScript', 'C++', 'SQL'],
+          items: ['Python', 'C++', 'Rust', 'SQL', 'TypeScript', 'JavaScript', 'Bash'],
+        },
+        {
+          name: 'Data',
+          icon: 'code',
+          items: ['DuckDB', 'Parquet', 'PostgreSQL', 'MongoDB', 'Neo4j', 'FAISS', 'ChromaDB'],
+        },
+        {
+          name: 'Infra',
+          icon: 'code',
+          items: ['CUDA', 'Docker', 'Kubernetes', 'AWS', 'GCP', 'FastAPI', 'GitHub Actions', 'MLflow'],
         },
       ],
     },
@@ -641,17 +842,18 @@ export const nodes: GraphNode[] = [
     },
   },
   {
-    id: 'ach-yc',
+    id: 'ach-medium',
     kind: 'achievement',
-    label: 'YC SUS India 2026',
-    subtitle: 'Bengaluru · Human Slop',
+    label: 'Technical Writer',
+    subtitle: '70+ articles · Medium',
     position: { x: SECTION.achievements.x + 320, y: SECTION.achievements.y + 100 },
-    tags: ['YC', 'Startup'],
+    tags: ['Writing', 'Medium', 'JAX'],
     detail: {
       kind: 'achievement',
-      icon: 'rocket',
-      title: 'YC SUS India Bengaluru 2026',
-      summary: 'Co-founding Human Slop — anti-AI social platform with typing forensics.',
+      icon: 'book-open',
+      title: 'Technical Writer — 70+ ML articles on Medium',
+      summary:
+        '70+ deep dives on ML, JAX, and systems with 800+ monthly readers, written so you can explain the topic in front of anyone.',
     },
   },
   {
@@ -710,6 +912,7 @@ const sections = [
   'blades',
   'skills',
   'achievements',
+  'openSource',
 ] as const;
 
 export const edges: GraphEdge[] = [
@@ -760,6 +963,25 @@ export const edges: GraphEdge[] = [
   edge('blades', 'proj-paged-attn', 'BELONGS_TO'),
   edge('blades', 'proj-pplm-watermark', 'BELONGS_TO'),
   edge('blades', 'proj-kaggle-students', 'BELONGS_TO'),
+  edge('blades', 'proj-arthjax', 'BELONGS_TO'),
+
+  // Open source hierarchy
+  edge('openSource', 'oss-hflow', 'BELONGS_TO'),
+  edge('openSource', 'oss-argus', 'BELONGS_TO'),
+  edge('openSource', 'oss-nvcf', 'BELONGS_TO'),
+  edge('openSource', 'oss-kornia', 'BELONGS_TO'),
+  edge('openSource', 'oss-shap', 'BELONGS_TO'),
+  edge('hub', 'oss-hflow', 'CONTRIBUTED_TO', '12 merged'),
+  edge('hub', 'oss-argus', 'CONTRIBUTED_TO', '4 merged'),
+  edge('hub', 'oss-nvcf', 'CONTRIBUTED_TO', '1 merged'),
+
+  // Open source ↔ own work
+  edge('oss-argus', 'proj-evalforge', 'RELATED_TO', 'ML reliability'),
+  edge('oss-argus', 'proj-ayurveda-rag', 'RELATED_TO', 'LangGraph agents'),
+  edge('oss-hflow', 'proj-bplussql', 'RELATED_TO', 'storage integrity'),
+  edge('oss-nvcf', 'proj-rapidadb', 'RELATED_TO', 'GPU infra'),
+  edge('oss-shap', 'proj-kaggle-students', 'RELATED_TO', 'SHAP'),
+  edge('proj-arthjax', 'proj-dml', 'RELATED_TO', 'accelerated training'),
 
   // --- Peer-to-Peer Technical "Blades" Relationships ---
   // CUDA / High-Performance Systems Cluster
@@ -786,12 +1008,12 @@ export const edges: GraphEdge[] = [
   // Achievements hierarchy
   edge('achievements', 'ach-kaggle-silver', 'BELONGS_TO'),
   edge('achievements', 'ach-gq', 'BELONGS_TO'),
-  edge('achievements', 'ach-yc', 'BELONGS_TO'),
+  edge('achievements', 'ach-medium', 'BELONGS_TO'),
   edge('achievements', 'ach-amazon', 'BELONGS_TO'),
   edge('achievements', 'ach-pixel-perfect', 'BELONGS_TO'),
   
   // Achievement Contextual links
-  edge('ach-yc', 'proj-humanslop', 'RELATED_TO', 'startup'),
+  edge('ach-medium', 'proj-arthjax', 'RELATED_TO', 'JAX writing'),
   edge('ach-amazon', 'proj-respect-gnn', 'RELATED_TO', 'deep research'),
   edge('ach-kaggle-silver', 'proj-kaggle-students', 'RELATED_TO', 'ensemble tech'),
   edge('ach-pixel-perfect', 'proj-gnn-eadd', 'RELATED_TO', 'competition'),
