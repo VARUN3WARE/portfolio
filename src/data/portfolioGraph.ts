@@ -195,7 +195,7 @@ export const nodes: GraphNode[] = [
         { label: 'Medium', href: 'https://medium.com/@varunrao.aiml', icon: 'globe' },
         {
           label: 'CV',
-          href: 'https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu',
+          href: 'https://drive.google.com/file/d/1Vv6JqFkT-Lq3qtJuhgQ1023F65OfnXNU/view?usp=sharing',
           icon: 'file-text',
         },
       ],
@@ -320,20 +320,20 @@ export const nodes: GraphNode[] = [
   {
     id: 'exp-hedgera',
     kind: 'experience',
-    label: 'Team Lead — AFI',
-    subtitle: 'Independent Research · IIT Bhilai',
+    label: 'Team Lead — AEGIS',
+    subtitle: 'Inter IIT Tech Meet 14.0 · IIT Bhilai',
     position: { x: SECTION.work.x + 260, y: SECTION.work.y - 120 },
     tags: ['Multi-Agent', 'RL', 'FinTech', 'LLM'],
     detail: {
       kind: 'experience',
-      role: 'Team Lead — Autonomous Financial Intelligence',
-      org: 'Independent Research',
+      role: 'Team Lead — AEGIS Financial Intelligence (Hedgera)',
+      org: 'Inter IIT Tech Meet 14.0',
       location: 'IIT Bhilai',
       start: 'Oct 2025',
       end: 'Dec 2025',
       logo: '/images/team_lead.jpeg',
       summary:
-        'Led an 8-member engineering team to architect a production-grade multi-agent financial AI system combining real-time streaming, reinforcement learning, and explainable LLM reasoning. Designed a 7-layer architecture with temporal data fabric, hybrid ML/RL forecasting pipeline, agentic debate framework, and real-time risk engine. Delivered an end-to-end platform integrating live market, news, and social data with a causal knowledge graph — backtested ~20% returns at 5–8% max drawdown.',
+        'Led an 8-member engineering team to architect a production-grade multi-agent financial AI system combining real-time streaming, reinforcement learning, and explainable LLM reasoning. Designed a 7-layer architecture with temporal data fabric, hybrid ML/RL forecasting pipeline, agentic debate framework, and real-time risk engine. Delivered an end-to-end platform integrating live market, news, and social data with a causal knowledge graph, PPO-based allocation, and SHAP/LIME explanations for every decision.',
     },
   },
   {
@@ -352,7 +352,7 @@ export const nodes: GraphNode[] = [
       end: 'Aug 2024',
       logo: '/images/kartavya.jpeg',
       summary:
-        'Built multi-agent automation systems and secure REST APIs integrated with AWS and GCP, reducing manual effort by 40% and increasing throughput by 30%. Maintained 99.9% uptime with CI/CD pipelines and cut infrastructure costs 25% through proactive monitoring and risk assessment.',
+        'Built multi-agent automation systems and secure REST APIs integrated with AWS and GCP, reducing manual effort by 40%. Maintained 99.9% uptime with CI/CD pipelines.',
     },
   },
 
@@ -390,7 +390,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/humanslop',
       family: 'featured',
       summary:
-        'Privacy-first social platform that blocks 100% of AI-generated content using hardware-bound biometric authentication and real-time typing forensics.',
+        'Privacy-first social platform that verifies human authorship using hardware-bound biometric authentication and real-time typing forensics.',
       tags: ['Python', 'React Native', 'Supabase', 'Biometrics'],
     },
   },
@@ -424,7 +424,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/Hedgera',
       family: 'featured',
       summary:
-        'Autonomous Financial Intelligence Platform. Multi-agent AI system for market analysis and portfolio management. Backtested returns: ~20%.',
+        'Multi-agent AI system for market analysis and portfolio management: PPO (FinRL) allocation, LLM agents, and SHAP/LIME explanations. Built for Inter IIT Tech Meet 14.0 (AEGIS).',
       tags: ['Pathway', 'PyTorch', 'LangChain', 'FinTech'],
     },
   },
@@ -547,7 +547,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/RAPIDADB',
       family: 'blade',
       summary:
-        'GPU-native vector database in C++/CUDA targeting sub-millisecond search and 100K+ QPS for production RAG systems.',
+        'GPU-native vector database in C++/CUDA with PyTorch bindings: 1,349 QPS at 100% Recall@10 on 100K × 768-d vectors, 6× faster than FAISS-CPU.',
       tags: ['CUDA', 'C++', 'Vector DB', 'PyTorch'],
     },
   },
@@ -581,7 +581,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/Kerala-Ayurveda-RAG',
       family: 'blade',
       summary:
-        'Production-grade multi-agent medical RAG system using GPT-4, LangGraph, and CRAG with hybrid BM25 + vector retrieval.',
+        'Multi-agent medical RAG system using GPT-4, LangGraph, and CRAG with hybrid BM25 + vector retrieval.',
       tags: ['LangGraph', 'CRAG', 'FastAPI'],
     },
   },
@@ -598,7 +598,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/Paged-Attention',
       family: 'blade',
       summary:
-        'PagedAttention from the vLLM paper: the KV cache is managed in fixed-size pages like virtual memory, cutting memory waste by 60–80% for LLM serving.',
+        'PagedAttention from the vLLM paper, built from scratch in PyTorch: the KV cache lives in fixed-size blocks like virtual memory, with copy-on-write sharing for beam search. Outputs match dense attention within 1e-5.',
       tags: ['CUDA', 'Transformer', 'Inference'],
     },
   },
@@ -615,7 +615,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/pplm-watermark',
       family: 'blade',
       summary:
-        'Statistical text watermarking using Plug-and-Play Language Models for imperceptible watermark embedding during inference.',
+        'Statistical text watermarking for GPT-2 (context-hashed green lists + logit bias) with a z-score detector: 80% TPR at 0% FPR in a 10-prompt pilot.',
       tags: ['Watermarking', 'PPLM', 'Inference Control'],
     },
   },
@@ -632,7 +632,7 @@ export const nodes: GraphNode[] = [
       url: 'https://github.com/VARUN3WARE/kaggle-Student-Performance',
       family: 'blade',
       summary:
-        'Engineered v2 of the Kaggle Student Performance Enhancer with ensemble models (R² 0.989) and SHAP explainability.',
+        'Engineered v2 of the Kaggle Student Performance Enhancer with ensemble models and SHAP explainability.',
       tags: ['SHAP', 'Ensemble', 'MLflow'],
     },
   },

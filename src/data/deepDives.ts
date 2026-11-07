@@ -24,7 +24,7 @@ export const deepDives: Record<string, DeepDive> = {
       'Hardware-bound biometric attestation + real-time typing forensics. Every post is signed by behavioural signal that an LLM cannot fake at scale.',
     stack: ['React Native', 'Python', 'Supabase', 'Biometrics', 'TypeForensics'],
     metrics: [
-      { label: 'AI content blocked', value: '100%' },
+      { label: 'Signal', value: 'Keystroke dynamics' },
       { label: 'Platforms', value: 'Web + mobile' },
       { label: 'Role', value: 'Co-founder' },
     ],
@@ -52,8 +52,8 @@ export const deepDives: Record<string, DeepDive> = {
       '7-layer architecture: streaming temporal data fabric → hybrid ML/RL forecasting → agentic LLM debate → causal knowledge graph → real-time risk engine. Multi-agent reasoning trades against a live tape.',
     stack: ['Pathway', 'PyTorch', 'LangChain', 'Causal Graphs', 'RL'],
     metrics: [
-      { label: 'Backtested return', value: '~20%' },
-      { label: 'Max drawdown', value: '5–8%' },
+      { label: 'RL policy', value: 'PPO (FinRL)' },
+      { label: 'Explainability', value: 'SHAP + LIME' },
       { label: 'Team led', value: '8 engineers' },
     ],
     whyItMatters:
@@ -63,11 +63,11 @@ export const deepDives: Record<string, DeepDive> = {
     problem:
       'Vector DBs are the bottleneck of every production RAG system. CPU implementations stall at sub-10K QPS, and most "GPU" options are wrappers, not native.',
     approach:
-      'C++17 + CUDA from the ground up. Coalesced memory access on HNSW shards, pinned host buffers, async stream-aware batching, PyTorch bindings.',
-    stack: ['CUDA', 'C++17', 'PyTorch', 'HNSW'],
+      'C++17 + CUDA from the ground up: tiled shared-memory distance kernels, warp-level top-k selection, and PyTorch bindings. Flat index benchmarked against FAISS-CPU and PyTorch GPU.',
+    stack: ['CUDA', 'C++17', 'PyTorch', 'Top-k kernels'],
     metrics: [
-      { label: 'Search latency', value: 'Sub-millisecond target' },
-      { label: 'Throughput', value: '100K+ QPS target' },
+      { label: 'Throughput', value: '1,349 QPS @ 100% recall' },
+      { label: 'vs FAISS-CPU', value: '6× faster' },
       { label: 'Surface', value: 'Python + native API' },
     ],
     whyItMatters:
@@ -91,10 +91,10 @@ export const deepDives: Record<string, DeepDive> = {
     problem:
       'LLM inference is memory-bound. Naive KV-cache implementations OOM long before the model itself does.',
     approach:
-      'Paged KV-cache with page tables, copy-on-write blocks, and stream-friendly eviction. Inspired by vLLM, written hands-on in CUDA.',
-    stack: ['CUDA', 'Transformer', 'Inference', 'Python'],
+      'Paged KV-cache with block tables, copy-on-write blocks, and swap or recompute on preemption. Inspired by vLLM, written from scratch in PyTorch.',
+    stack: ['PyTorch', 'Transformer', 'Inference', 'Python'],
     metrics: [
-      { label: 'KV memory cut', value: '60–80%' },
+      { label: 'Correctness', value: 'Matches dense attention (1e-5)' },
       { label: 'Target', value: 'Production LLM serving' },
       { label: 'Layer', value: 'Inference runtime' },
     ],
@@ -113,7 +113,7 @@ export const deepDives: Record<string, DeepDive> = {
       { label: 'Surface', value: 'FastAPI service' },
     ],
     whyItMatters:
-      'A useful template for any high-stakes RAG: legal, medical, scientific. CRAG-style self-critique reduces hallucinations measurably.',
+      'A useful template for any high-stakes RAG: legal, medical, scientific. CRAG-style self-critique catches weak retrievals before they reach the answer.',
   },
   'oss-hflow': {
     problem:

@@ -85,9 +85,9 @@ export const chapters: Chapter[] = [
     thesis:
       'Multi-agent pipelines that are measured, critiqued, and caught when they fail, from trading desks to medical RAG.',
     stats: [
-      { value: '~20%', label: 'backtested return, Hedgera' },
+      { value: 'PPO', label: 'RL allocator, Hedgera' },
       { value: '8', label: 'engineers led' },
-      { value: '<10%', label: 'hallucination rate, medical RAG' },
+      { value: '6', label: 'LangGraph agents, medical RAG' },
     ],
     items: ['proj-hedgera', 'proj-ayurveda-rag', 'proj-evalforge', 'proj-pplm-watermark'],
     radar: { angle: 92, radius: 0.64 },
@@ -196,7 +196,7 @@ export const SOCIALS = {
   linkedin: 'https://linkedin.com/in/varun3ware/',
   x: 'https://x.com/varun_slops',
   medium: 'https://medium.com/@varunrao.aiml',
-  cv: 'https://drive.google.com/drive/folders/1yrDlBg_SEmawLK0RP3oR8HcV_j27OmFu',
+  cv: 'https://drive.google.com/file/d/1Vv6JqFkT-Lq3qtJuhgQ1023F65OfnXNU/view?usp=sharing',
 };
 
 /** Which balls a cold read points a recruiter to, by persona id. */
